@@ -39,6 +39,7 @@ class CustomAppbarForDetailsScreen extends StatelessWidget {
                   padding: EdgeInsets.zero,
                   icon: const Icon(Icons.shopping_cart_rounded,color: Colors.black,),
                   onPressed: (){
+                    Navigator.pushNamed(context, "cartView");
                   },
                 ),
               ),

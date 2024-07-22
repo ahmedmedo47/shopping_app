@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopping_app/features/cart/presentation/views/cart_view.dart';
+import 'package:shopping_app/features/home/presentation/views/home_view_product_details_Screen.dart';
 import 'package:shopping_app/features/search/presentation/manager/search_provider.dart';
 import 'package:shopping_app/features/search/presentation/views/search_view.dart';
 
@@ -16,10 +18,13 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => SearchProvider()),
       ],
-      child: const MaterialApp(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Shopping App',
-        home: SearchView(),
+        routes: {
+          "cartView": (context) => CartView(),
+        },
+        home: HomeViewProductDetailsScreen(),
       ),
     );
   }
