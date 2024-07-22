@@ -25,7 +25,7 @@ class _HomeViewProductDetailsWidgetState
       children: [
         Stack(
           children: [
-            Container(
+            SizedBox(
               width: width,
               height: height * 3 / 5,
               child: PageView(
