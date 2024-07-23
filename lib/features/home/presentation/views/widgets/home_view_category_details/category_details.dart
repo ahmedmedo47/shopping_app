@@ -20,7 +20,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
   Widget build(BuildContext context) {
     return Container(
       height: 400,
-      padding: EdgeInsets.all(8.0),
+      padding:const EdgeInsets.all(8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -33,7 +33,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                   Container(
                     height: 210,
                     width: double.infinity,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.yellow,
                       image: DecorationImage(
                         image: AssetImage('assets/images/test.webp'),
@@ -48,7 +48,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
-                        color: Color(0xffecf0ec),
+                        color: const Color(0xffecf0ec),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: IconButton(
@@ -64,8 +64,8 @@ class _CategoryDetailsState extends State<CategoryDetails> {
               ),
             ),
           ),
-          SizedBox(height: 8),
-          Row(
+          const SizedBox(height: 8),
+          const Row(
             children: [
               Text(
                 "34.99",
@@ -85,8 +85,8 @@ class _CategoryDetailsState extends State<CategoryDetails> {
               ),
             ],
           ),
-          SizedBox(height: 5),
-          Opacity(
+          const SizedBox(height: 5),
+          const Opacity(
             opacity: .4,
             child: Text(
               "Nike Training One Short Leggings ",
