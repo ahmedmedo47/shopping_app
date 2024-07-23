@@ -43,7 +43,7 @@ class CartView extends StatelessWidget {
                       final item = cartProvider.products[index];
                       return CartItem(
                         item: item,
-                        onRemove: () {},
+                        onRemove: () => cartProvider.removeItem(item),
                         onAdd: () {},
                       );
                     },

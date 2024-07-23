@@ -3,7 +3,6 @@ class CartItemModel {
   final double price;
   final String title;
   final String size;
-
   int count;
 
   CartItemModel({

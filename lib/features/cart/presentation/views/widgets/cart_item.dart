@@ -21,7 +21,7 @@ class CartItem extends StatelessWidget {
     return Consumer(
       builder: (context, cartProvider, child) {
         return InkWell(
-          onLongPress: () {},
+          onLongPress: onRemove,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: Row(

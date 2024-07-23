@@ -12,19 +12,14 @@ class CartProvider extends ChangeNotifier {
       title: 'Product 1',
       size: 'XL',
     ),
-    CartItemModel(
-      imageUrl:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfZQWihoOXt4U0Bi--pKEFf0gZrymLOJeymA&s',
-      price: 1.0,
-      title: 'Product 1',
-      size: 'XL',
-    ),
+
     CartItemModel(
       imageUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfZQWihoOXt4U0Bi--pKEFf0gZrymLOJeymA&s',
       price: 50.0,
       title: 'Product 2',
       size: 'XL',
+      count: 2,
     ),
     CartItemModel(
       imageUrl:
@@ -44,7 +39,14 @@ class CartProvider extends ChangeNotifier {
       imageUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfZQWihoOXt4U0Bi--pKEFf0gZrymLOJeymA&s',
       price: 1.0,
-      title: 'Product 4',
+      title: 'Product 5',
+      size: 'XL',
+    ),
+    CartItemModel(
+      imageUrl:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfZQWihoOXt4U0Bi--pKEFf0gZrymLOJeymA&s',
+      price: 1.0,
+      title: 'Product 6',
       size: 'XL',
     ),
   ];
@@ -61,11 +63,11 @@ class CartProvider extends ChangeNotifier {
 
   void removeItem(CartItemModel item) {
     final existingItemIndex =
-        _items.indexWhere((element) => element.title == item.title);
+        products.indexWhere((element) => element.title == item.title);
     if (existingItemIndex >= 0) {
-      _items[existingItemIndex].count -= 1;
-      if (_items[existingItemIndex].count == 0) {
-        _items.removeAt(existingItemIndex);
+      products[existingItemIndex].count -= 1;
+      if (products[existingItemIndex].count == 0) {
+        products.removeAt(existingItemIndex);
       }
     }
     notifyListeners();
