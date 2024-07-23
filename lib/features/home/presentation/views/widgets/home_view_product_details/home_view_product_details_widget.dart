@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/features/home/presentation/views/widgets/home_view_product_details/custom_appbar_for_details_screen.dart';
 import 'package:shopping_app/features/home/presentation/views/widgets/home_view_product_details/desc_of_product_details.dart';
-import 'package:shopping_app/features/home/presentation/views/widgets/home_view_product_details/product_details_tile.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeViewProductDetailsWidget extends StatefulWidget {

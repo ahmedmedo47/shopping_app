@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:shopping_app/features/cart/presentation/manager/cart_provider.dart';
 
 class OrderSummary extends StatelessWidget {
   const OrderSummary({super.key});
@@ -35,12 +37,17 @@ class OrderSummary extends StatelessWidget {
               ),
             ],
           ),
-          Text(
-            '205.99\u{20AC}',
-            style: GoogleFonts.gabarito(
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
-            ),
+          Consumer<CartProvider>(
+            builder: (context, cartProvider, child) {
+              final totalAmount = cartProvider.totalAmount;
+              return Text(
+                '${totalAmount.toStringAsFixed(2)}\u{20AC}',
+                style: GoogleFonts.gabarito(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                ),
+              );
+            },
           ),
         ],
       ),
