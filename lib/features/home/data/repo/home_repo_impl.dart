@@ -10,7 +10,7 @@ class HomeRepoImpl implements HomeRepo{
   HomeRepoImpl({required this.apiService});
 
   @override
-  Future<Either<Faliures, List<Products>>> fetchAllProducts() async{
+  Future<Either<Failure, List<Products>>> fetchAllProducts() async{
     try {
       List<Products> productList = [];
       Map<String, dynamic> jsonData = await apiService.get(endPoints: "");
@@ -20,7 +20,7 @@ class HomeRepoImpl implements HomeRepo{
       }
       return right(productList);
     } on Exception catch (e) {
-      return left(ServerError(e.toString()));
+      return left(ServerFailure(errorMessage: e.toString()));
     }
   }
 
