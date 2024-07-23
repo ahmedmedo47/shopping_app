@@ -22,9 +22,9 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Shopping App',
         routes: {
-          "cartView": (context) => CartView(),
+          "cartView": (context) => const CartView(),
         },
-        home: HomeViewProductDetailsScreen(),
+        home: const HomeViewProductDetailsScreen(),
       ),
     );
   }
