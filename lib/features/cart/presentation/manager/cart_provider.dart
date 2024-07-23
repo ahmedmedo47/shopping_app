@@ -16,6 +16,13 @@ class CartProvider extends ChangeNotifier {
       imageUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfZQWihoOXt4U0Bi--pKEFf0gZrymLOJeymA&s',
       price: 1.0,
+      title: 'Product 1',
+      size: 'XL',
+    ),
+    CartItemModel(
+      imageUrl:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfZQWihoOXt4U0Bi--pKEFf0gZrymLOJeymA&s',
+      price: 50.0,
       title: 'Product 2',
       size: 'XL',
     ),
@@ -24,6 +31,13 @@ class CartProvider extends ChangeNotifier {
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfZQWihoOXt4U0Bi--pKEFf0gZrymLOJeymA&s',
       price: 1.0,
       title: 'Product 3',
+      size: 'XL',
+    ),
+    CartItemModel(
+      imageUrl:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfZQWihoOXt4U0Bi--pKEFf0gZrymLOJeymA&s',
+      price: 1.0,
+      title: 'Product 4',
       size: 'XL',
     ),
     CartItemModel(
