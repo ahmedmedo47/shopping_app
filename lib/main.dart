@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopping_app/features/cart/presentation/manager/cart_provider.dart';
 import 'package:shopping_app/features/cart/presentation/views/cart_view.dart';
 import 'package:shopping_app/features/home/presentation/views/home_view.dart';
 import 'package:shopping_app/features/home/presentation/views/home_view_product_details_Screen.dart';
@@ -19,17 +20,16 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => SearchProvider()),
+        ChangeNotifierProvider(create: (_) => CartProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Shopping App',
         routes: {
-          "cartView": (context) => const CartView(),
-          "/homeView":(context)=>const HomeViewCategoryDetails(),
-          "HomeViewProductDetailsScreen": (context) => const HomeViewProductDetailsScreen(),
-          "searchView": (context) => const SearchView(),
+          "/cartView": (context) => const CartView(),
+          "/homeView": (context) => const HomeViewCategoryDetails(),
         },
-        home: const HomeView(),
+        home: const CartView(),
       ),
     );
   }

@@ -3,5 +3,5 @@ import 'package:shopping_app/core/errors/faliure.dart';
 import 'package:shopping_app/features/home/data/models/products/products.dart';
 
 abstract class HomeRepo{
-  Future<Either<Faliures,List<Products>>> fetchAllProducts();
+  Future<Either<Failure,List<Products>>> fetchAllProducts();
 }
