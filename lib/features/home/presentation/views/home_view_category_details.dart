@@ -5,6 +5,6 @@ class HomeViewCategoryDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HomeViewBodyCategoryDetails();
+    return const HomeViewBodyCategoryDetails();
   }
 }

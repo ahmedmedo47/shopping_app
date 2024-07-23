@@ -22,7 +22,7 @@ class ButtonAction extends StatelessWidget {
               onPressed: (){},
               text: "Sort",
               colorText: Colors.black,
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(15),
                 bottomLeft: Radius.circular(15),
               ),
@@ -33,14 +33,14 @@ class ButtonAction extends StatelessWidget {
             width: 1.5,
             height: 30,
             color: Colors.grey,
-            margin: EdgeInsets.symmetric(vertical: 10),
+            margin: const EdgeInsets.symmetric(vertical: 10),
           ),
           Expanded(
             child: CustomTextButton(
               onPressed: () {},
               text: "Filter",
               colorText: Colors.black,
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 topRight: Radius.circular(15),
                 bottomRight: Radius.circular(15),
               ),
@@ -51,5 +51,3 @@ class ButtonAction extends StatelessWidget {
     );
   }
 }
-
-

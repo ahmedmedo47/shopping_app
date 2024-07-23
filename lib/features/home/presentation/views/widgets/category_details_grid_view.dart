@@ -8,17 +8,17 @@ class CategoryDetailsGridView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.builder(
       itemCount: 20,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
         childAspectRatio: 0.56,
       ),
       itemBuilder: (context, i) {
-        return CategoryDetails();
+        return const CategoryDetails();
       },
       shrinkWrap: true, // هذه الخاصية تجعل GridView يضبط حجمه بناءً على محتوياته
-      physics: NeverScrollableScrollPhysics(), // هذا يمنع GridView من التمرير نفسه
+      physics: const NeverScrollableScrollPhysics(), // هذا يمنع GridView من التمرير نفسه
     );
   }
 }

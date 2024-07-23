@@ -10,18 +10,18 @@ class HomeViewBodyCategoryDetails extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white54,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(65.0),
+        preferredSize: const Size.fromHeight(65.0),
         child: AppBar(
-          backgroundColor: Color(0xffFFFFFF),
+          backgroundColor: const Color(0xffFFFFFF),
           centerTitle: true,
-          leading: Icon(Icons.arrow_back_ios_new),
-          title: Text("Category"),
+          leading: const Icon(Icons.arrow_back_ios_new),
+          title: const Text("Category"),
         ),
       ),
       body: ListView(
        // physics: NeverScrollableScrollPhysics(),
-        padding: EdgeInsets.symmetric(horizontal: 18),
-        children: [
+        padding: const EdgeInsets.symmetric(horizontal: 18),
+        children: const [
           SizedBox(height: 12),
           ButtonAction(), // تأكد من تعريف هذا الودجت بشكل صحيح
           SizedBox(height: 20),

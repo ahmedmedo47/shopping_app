@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shopping_app/features/home/presentation/views/widgets/home_view_product_details/product_details_tile.dart';
 import 'package:shopping_app/features/home/presentation/views/widgets/home_view_product_details/row_buttons_item.dart';
 class DescOfProductDetails extends StatefulWidget {
-   DescOfProductDetails({Key? key}) : super(key: key);
+   const DescOfProductDetails({super.key});
 
   @override
   State<DescOfProductDetails> createState() => _DescOfProductDetailsState();
@@ -42,6 +42,3 @@ class _DescOfProductDetailsState extends State<DescOfProductDetails> {
 
 
 }
-
-
-

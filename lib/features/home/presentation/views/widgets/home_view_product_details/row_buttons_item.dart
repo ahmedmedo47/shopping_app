@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/features/home/presentation/views/widgets/home_view_product_details/product_details_tile.dart';
 class RowButtonsItem extends StatefulWidget {
-   RowButtonsItem({Key? key}) : super(key: key);
+   RowButtonsItem({super.key});
 
   @override
   State<RowButtonsItem> createState() => _ProductDetailsItemState();
