@@ -4,7 +4,8 @@ import 'package:shopping_app/features/home/presentation/views/widgets/home_view_
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeViewProductDetailsWidget extends StatefulWidget {
-  const HomeViewProductDetailsWidget({super.key});
+  const HomeViewProductDetailsWidget({super.key, required this.price});
+  final String price;
 
   @override
   State<HomeViewProductDetailsWidget> createState() =>
@@ -76,7 +77,7 @@ class _HomeViewProductDetailsWidgetState
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(15),
                       topRight: Radius.circular(15))),
-              child: const DescOfProductDetails()
+              child:  DescOfProductDetails(price: widget.price,)
             ),
           ),
         ),
