@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_app/features/home/presentation/views/widgets/custom_action_button.dart';
+import 'package:shopping_app/features/home/presentation/views/widgets/home_view_category_details/custom_action_button.dart';
 
 class ButtonAction extends StatelessWidget {
   const ButtonAction({

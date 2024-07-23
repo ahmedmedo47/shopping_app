@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_app/features/home/presentation/views/widgets/button_action.dart';
-import 'package:shopping_app/features/home/presentation/views/widgets/category_details_grid_view.dart';
+import 'package:shopping_app/features/home/presentation/views/widgets/home_view_category_details/button_action.dart';
+import 'package:shopping_app/features/home/presentation/views/widgets/home_view_category_details/category_details_grid_view.dart';
 
 class HomeViewBodyCategoryDetails extends StatelessWidget {
   const HomeViewBodyCategoryDetails({super.key});
