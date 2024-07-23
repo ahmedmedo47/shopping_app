@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/features/home/presentation/views/widgets/home_view/home_view_details_for_list.dart';
 class HomeViewList extends StatelessWidget {
-  const HomeViewList({Key? key}) : super(key: key);
+  const HomeViewList({super.key});
 
   @override
   Widget build(BuildContext context) {

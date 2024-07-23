@@ -20,8 +20,8 @@ class _DescOfProductDetailsState extends State<DescOfProductDetails> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
              Text(
-              "${widget.price}",
-              style: TextStyle(color: Colors.black, fontSize: 20),
+              widget.price,
+              style: const TextStyle(color: Colors.black, fontSize: 20),
             ),
             const Text(
               "Details",

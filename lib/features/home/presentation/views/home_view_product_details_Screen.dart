@@ -7,7 +7,7 @@ class HomeViewProductDetailsScreen extends StatelessWidget {
     Map<String, dynamic> data = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     String price = data["price"];
     return  Scaffold(
-      body: HomeViewProductDetailsWidget(price: "$price",),
+      body: HomeViewProductDetailsWidget(price: price,),
     );
   }
 }

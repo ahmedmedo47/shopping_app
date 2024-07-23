@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 class HomeViewRowButton extends StatelessWidget {
-  const HomeViewRowButton({Key? key}) : super(key: key);
+  const HomeViewRowButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +15,11 @@ class HomeViewRowButton extends StatelessWidget {
           MaterialButton(onPressed: (){},
             child: InkWell(
               onTap: (){
-                Navigator.pushNamed(context, "searchView");
               },
               child: const Row(
                 children: [
                   Text("Shop Now",style: TextStyle(fontSize: 15,color: Colors.black26),),
-                  Icon(Icons.arrow_forward_ios)
+                  Icon(Icons.arrow_forward_ios_rounded,size: 15,color: Colors.black26,)
                 ],
               ),
             ),
