@@ -57,6 +57,25 @@ class CartItem extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
+                    Row(
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.remove),
+                          onPressed: onRemove, // Use the onRemove callback
+                        ),
+                        Text(
+                          '${item.count}',
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.add),
+                          onPressed: onAdd,
+                        ),
+                      ],
+                    ),
                   ],
                 ),
                 const Spacer(),
