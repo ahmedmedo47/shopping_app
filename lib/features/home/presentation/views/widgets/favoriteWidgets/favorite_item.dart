@@ -29,7 +29,7 @@ class FavoriteItem extends StatelessWidget {
                   ),
                   const SizedBox(height: 2),
                   const Text(
-                      maxLines: 3,
+                      maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       "Desc sss aaa qqqddddddd wwww ff aaaccc zzz xxxx dddd dsds sss fff sss", style:TextStyle(fontSize: 18)),
                   const SizedBox(height: 2),
