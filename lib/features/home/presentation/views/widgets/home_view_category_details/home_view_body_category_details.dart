@@ -3,7 +3,8 @@ import 'package:shopping_app/features/home/presentation/views/widgets/home_view_
 import 'package:shopping_app/features/home/presentation/views/widgets/home_view_category_details/category_details_grid_view.dart';
 
 class HomeViewBodyCategoryDetails extends StatelessWidget {
-  const HomeViewBodyCategoryDetails({super.key});
+  const HomeViewBodyCategoryDetails({super.key, required this.categoryName});
+  final String categoryName;
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +15,10 @@ class HomeViewBodyCategoryDetails extends StatelessWidget {
         child: AppBar(
           backgroundColor: const Color(0xffFFFFFF),
           centerTitle: true,
-          leading: const Icon(Icons.arrow_back_ios_new),
-          title: const Text("Category"),
+          leading: IconButton(icon: const Icon(Icons.arrow_back_ios_new),onPressed: (){
+            Navigator.of(context).pop();
+          },),
+          title:  Text(categoryName),
         ),
       ),
       body: ListView(

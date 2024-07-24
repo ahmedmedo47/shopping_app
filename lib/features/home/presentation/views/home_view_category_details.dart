@@ -5,6 +5,8 @@ class HomeViewCategoryDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const HomeViewBodyCategoryDetails();
+    Map<String, dynamic> data = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    String categoryName = data["categoryName"];
+    return  HomeViewBodyCategoryDetails(categoryName: categoryName,);
   }
 }

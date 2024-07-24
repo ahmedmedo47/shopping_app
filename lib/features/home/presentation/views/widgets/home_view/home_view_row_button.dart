@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 class HomeViewRowButton extends StatelessWidget {
-  const HomeViewRowButton({super.key});
+  const HomeViewRowButton({super.key, required this.categoryName});
+  final String categoryName;
 
   @override
   Widget build(BuildContext context) {
@@ -11,10 +12,13 @@ class HomeViewRowButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text("Clothes",style: TextStyle(fontSize: 20,color: Colors.black),),
+           Text( categoryName,style: const TextStyle(fontSize: 20,color: Colors.black),),
           MaterialButton(onPressed: (){},
             child: InkWell(
               onTap: (){
+                Navigator.pushNamed(context, "homeViewCategoryDetails",arguments: {
+                  "categoryName" : categoryName
+                });
               },
               child: const Row(
                 children: [

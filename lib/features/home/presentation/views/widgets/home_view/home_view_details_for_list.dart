@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shopping_app/features/home/presentation/views/widgets/home_view/home_view_container_details_for_list.dart';
 import 'package:shopping_app/features/home/presentation/views/widgets/home_view/home_view_row_button.dart';
 class HomeViewDetailsForList extends StatelessWidget {
-  const HomeViewDetailsForList({super.key});
-
+  const HomeViewDetailsForList({super.key, required this.categoryName});
+  final String categoryName;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.sizeOf(context).height;
@@ -12,7 +12,7 @@ class HomeViewDetailsForList extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const HomeViewRowButton(),
+          HomeViewRowButton(categoryName: categoryName,),
           SizedBox(
             height: height * 0.5,
             child: ListView.builder(
