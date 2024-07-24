@@ -26,10 +26,11 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Shopping App',
         routes: {
-          "/cartView": (context) => const CartView(),
-          "/homeView": (context) => const HomeViewCategoryDetails(),
+          "cartView": (context) => const CartView(),
+          "homeViewCategoryDetails": (context) => const HomeViewCategoryDetails(),
+          "homeViewProductDetailsScreen": (context) => const HomeViewProductDetailsScreen(),
         },
-        home: const CartView(),
+        home: const HomeView(),
       ),
     );
   }

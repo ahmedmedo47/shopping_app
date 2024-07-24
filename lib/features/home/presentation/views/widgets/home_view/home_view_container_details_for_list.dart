@@ -18,7 +18,7 @@ class _HomeViewContainerDetailsForListState extends State<HomeViewContainerDetai
       children: [
         InkWell(
           onTap: (){
-            Navigator.pushNamed(context, "HomeViewProductDetailsScreen",arguments: {
+            Navigator.pushNamed(context, "homeViewProductDetailsScreen",arguments: {
               "image" : widget.image,
               "price" : widget.price,
             });
