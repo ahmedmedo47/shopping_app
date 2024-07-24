@@ -8,6 +8,7 @@ import 'package:shopping_app/features/home/presentation/views/home_view_category
 import 'package:shopping_app/features/navigation_bar/presentaions/views/navigation_bar.dart';
 import 'package:shopping_app/features/search/presentation/manager/search_provider.dart';
 import 'package:shopping_app/features/search/presentation/views/search_view.dart';
+import 'package:shopping_app/features/splash/features/presentation/views/splash_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,8 +31,9 @@ class MyApp extends StatelessWidget {
           "cartView": (context) => const CartView(),
           "homeViewCategoryDetails": (context) => const HomeViewCategoryDetails(),
           "homeViewProductDetailsScreen": (context) => const HomeViewProductDetailsScreen(),
+          "navigationBar":(context) => const NavigationBarForApp(),
         },
-        home: const NavigationBarForApp(),
+        home: const SplashView()
       ),
     );
   }
