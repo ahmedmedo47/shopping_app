@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_app/features/home/presentation/views/widgets/home_view_product_details/product_details_tile.dart';
 class RowButtonsItem extends StatefulWidget {
    RowButtonsItem({super.key});
 
@@ -11,7 +10,6 @@ class RowButtonsItem extends StatefulWidget {
 class _ProductDetailsItemState extends State<RowButtonsItem> {
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.sizeOf(context).width;
     return Row(
       children: [
         Expanded(

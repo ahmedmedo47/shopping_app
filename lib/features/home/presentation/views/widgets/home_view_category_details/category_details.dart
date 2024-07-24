@@ -34,7 +34,6 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                     height: 210,
                     width: double.infinity,
                     decoration: const BoxDecoration(
-                      color: Colors.yellow,
                       image: DecorationImage(
                         image: AssetImage('assets/images/test.webp'),
                         fit: BoxFit.fill,

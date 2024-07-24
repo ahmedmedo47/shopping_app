@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/features/cart/presentation/views/cart_view.dart';
 import 'package:shopping_app/features/home/presentation/views/favorite_view.dart';
-import 'package:shopping_app/features/home/presentation/views/widgets/home_view/home_view_widget.dart';
+import 'package:shopping_app/features/home/presentation/views/home_view.dart';
 import 'package:shopping_app/features/search/presentation/views/search_view.dart';
 class NavigationBarForApp extends StatefulWidget {
   const NavigationBarForApp({super.key});
@@ -12,7 +12,7 @@ class NavigationBarForApp extends StatefulWidget {
 
 class _NavigationBarState extends State<NavigationBarForApp> {
   int selectedIndex = 0 ;
-  List<Widget> views = [const HomeViewWidget(categoryName: "Clothes"),const SearchView(),const CartView(),const FavoriteView()];
+  List<Widget> views = [const HomeView(),const SearchView(),const CartView(),const FavoriteView()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
