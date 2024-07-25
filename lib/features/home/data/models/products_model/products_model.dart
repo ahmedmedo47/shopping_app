@@ -6,12 +6,12 @@ class ProductsModel {
   int? id;
   int? mainCategoryId;
   String? type;
-  String? description;
+  String description;
   String? typeName;
-  String? title;
+  String title;
   String? brand;
   String? model;
-  String? image;
+  String image;
   int? variantCount;
   String? currency;
   List<Option>? options;
@@ -26,12 +26,12 @@ class ProductsModel {
     this.id,
     this.mainCategoryId,
     this.type,
-    this.description,
+    required this.description,
     this.typeName,
-    this.title,
+    required this.title,
     this.brand,
     this.model,
-    this.image,
+    required this.image,
     this.variantCount,
     this.currency,
     this.options,
@@ -47,12 +47,12 @@ class ProductsModel {
         id: json['id'] as int?,
         mainCategoryId: json['main_category_id'] as int?,
         type: json['type'] as String?,
-        description: json['description'] as String?,
+        description: json['description'] as String,
         typeName: json['type_name'] as String?,
-        title: json['title'] as String?,
+        title: json['title'] as String,
         brand: json['brand'] as String?,
         model: json['model'] as String?,
-        image: json['image'] as String?,
+        image: json['image'] as String,
         variantCount: json['variant_count'] as int?,
         currency: json['currency'] as String?,
         options: (json['options'] as List<dynamic>?)

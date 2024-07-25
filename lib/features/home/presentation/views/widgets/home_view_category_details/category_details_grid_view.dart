@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/features/home/data/models/products_model/products_model.dart';
 import 'package:shopping_app/features/home/presentation/views/widgets/home_view_category_details/category_details.dart';
 
 class CategoryDetailsGridView extends StatelessWidget {
-  const CategoryDetailsGridView({super.key});
-
+  const CategoryDetailsGridView({super.key, required this.productList});
+  final List<ProductsModel> productList;
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -15,7 +16,7 @@ class CategoryDetailsGridView extends StatelessWidget {
         childAspectRatio: 0.53,
       ),
       itemBuilder: (context, i) {
-        return const CategoryDetails();
+        return  CategoryDetails(product: productList[i],);
       },
       shrinkWrap:
           true, // هذه الخاصية تجعل GridView يضبط حجمه بناءً على محتوياته

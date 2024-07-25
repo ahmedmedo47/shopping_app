@@ -1,31 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/features/home/data/models/products_model/products_model.dart';
 
-class HomeViewContainerDetailsForList extends StatefulWidget {
-  HomeViewContainerDetailsForList(
-      {super.key, required this.image, required this.price});
-  final String image;
-  final String price;
-  bool addedToTheCart = false;
+class HomeViewContainerDetailsForList extends StatelessWidget {
+  const HomeViewContainerDetailsForList({
+    super.key,
+    required this.product,
+  });
 
-  @override
-  State<HomeViewContainerDetailsForList> createState() =>
-      _HomeViewContainerDetailsForListState();
-}
+  final ProductsModel product;
 
-class _HomeViewContainerDetailsForListState
-    extends State<HomeViewContainerDetailsForList> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.sizeOf(context).width;
     double height = MediaQuery.sizeOf(context).height;
+
     return Row(
       children: [
         InkWell(
           onTap: () {
             Navigator.pushNamed(context, "homeViewProductDetailsScreen",
                 arguments: {
-                  "image": widget.image,
-                  "price": widget.price,
+                  "id": product.id,// You might want to replace this with the actual product price
                 });
           },
           child: Stack(
@@ -44,25 +39,17 @@ class _HomeViewContainerDetailsForListState
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         image: DecorationImage(
-                            image: AssetImage(widget.image), fit: BoxFit.fill),
+                            image: NetworkImage(product.image), fit: BoxFit.fill),
                       ),
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsets.only(left: 15.0),
                       child: Text(
-                        widget.price,
-                        style:
-                            const TextStyle(fontSize: 20, color: Colors.black),
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 15.0),
-                      child: Text(
-                        "Noisy May short oversized sweatshirt in gray",
-                        style: TextStyle(fontSize: 15, color: Colors.black26),
+                        product.description,
+                        maxLines: 4,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(fontSize: 15, color: Colors.black26),
                       ),
                     )
                   ],
@@ -80,15 +67,11 @@ class _HomeViewContainerDetailsForListState
                   ),
                   child: IconButton(
                     onPressed: () {
-                      setState(() {
-                        widget.addedToTheCart = !widget.addedToTheCart;
-                      });
+                      // Handle adding to cart or favorites
                     },
                     icon: Icon(
-                      widget.addedToTheCart
-                          ? Icons.favorite
-                          : Icons.favorite_border,
-                      color: widget.addedToTheCart ? Colors.red : Colors.black,
+                      Icons.favorite_border,
+                      color: Colors.black,
                     ),
                   ),
                 ),
@@ -96,9 +79,7 @@ class _HomeViewContainerDetailsForListState
             ],
           ),
         ),
-        const SizedBox(
-          width: 20,
-        )
+        const SizedBox(width: 20),
       ],
     );
   }
