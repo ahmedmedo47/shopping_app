@@ -50,11 +50,9 @@ class Products {
         'category': category?.toMap(),
       };
 
-
   factory Products.fromJson(String data) {
     return Products.fromMap(json.decode(data) as Map<String, dynamic>);
   }
-
 
   String toJson() => json.encode(toMap());
 }

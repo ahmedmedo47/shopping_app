@@ -12,21 +12,19 @@ class ButtonAction extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
-
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Expanded(
             child: CustomTextButton(
-              onPressed: (){},
+              onPressed: () {},
               text: "Sort",
               colorText: Colors.black,
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(15),
                 bottomLeft: Radius.circular(15),
               ),
-
             ),
           ),
           Container(

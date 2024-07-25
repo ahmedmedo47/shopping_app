@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 
 abstract class Failure {
@@ -21,7 +20,8 @@ class ServerFailure extends Failure {
         return ServerFailure(errorMessage: 'Bad certificate received');
       case DioErrorType.badResponse:
         if (dioError.response != null) {
-          return ServerFailure.fromResponse(dioError.response!.statusCode, dioError.response!.data);
+          return ServerFailure.fromResponse(
+              dioError.response!.statusCode, dioError.response!.data);
         } else {
           return ServerFailure(errorMessage: 'Received a bad response');
         }
@@ -30,13 +30,15 @@ class ServerFailure extends Failure {
       case DioErrorType.connectionError:
         return ServerFailure(errorMessage: 'No Internet Connection ');
       case DioErrorType.unknown:
-        if(dioError.message!.contains("SocketException")){
+        if (dioError.message!.contains("SocketException")) {
           return ServerFailure(errorMessage: 'No Internet Connection');
         }
-        return ServerFailure(errorMessage: "Unexpected Error , please try again ");
+        return ServerFailure(
+            errorMessage: "Unexpected Error , please try again ");
 
       default:
-        return ServerFailure(errorMessage: 'Oops, there was an error, please try again');
+        return ServerFailure(
+            errorMessage: 'Oops, there was an error, please try again');
     }
   }
 
@@ -44,11 +46,14 @@ class ServerFailure extends Failure {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
       return ServerFailure(errorMessage: response['error']['message']);
     } else if (statusCode == 404) {
-      return ServerFailure(errorMessage: "Your response not found, please try later!");
+      return ServerFailure(
+          errorMessage: "Your response not found, please try later!");
     } else if (statusCode == 500) {
-      return ServerFailure(errorMessage: "Internal server error, please try later");
+      return ServerFailure(
+          errorMessage: "Internal server error, please try later");
     } else {
-      return ServerFailure(errorMessage: "Oops, there was an error, please try again");
+      return ServerFailure(
+          errorMessage: "Oops, there was an error, please try again");
     }
   }
 }
