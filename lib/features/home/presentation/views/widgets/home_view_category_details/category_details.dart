@@ -20,7 +20,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
   Widget build(BuildContext context) {
     return Container(
       height: 400,
-      padding:const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -34,7 +34,6 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                     height: 210,
                     width: double.infinity,
                     decoration: const BoxDecoration(
-                      color: Colors.yellow,
                       image: DecorationImage(
                         image: AssetImage('assets/images/test.webp'),
                         fit: BoxFit.fill,
