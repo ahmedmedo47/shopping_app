@@ -1,4 +1,3 @@
-
 class Option {
   String? id;
   String? title;
@@ -14,20 +13,27 @@ class Option {
     this.additionalPriceBreakdown,
   });
 
-  factory Option.fromJson(Map<String, dynamic> json) => Option(
-        id: json['id'] as String?,
-        title: json['title'] as String?,
-        type: json['type'] as String?,
-        additionalPrice: json['additional_price'] as dynamic,
-        additionalPriceBreakdown:
-            json['additional_price_breakdown'] as List<dynamic>?,
-      );
+  factory Option.fromJson(Map<String, dynamic> json) {
+    return Option(
+      id: json['id'] as String?,
+      title: json['title'] as String?,
+      type: json['type'] as String?,
+      additionalPrice: json['additional_price'],
+      additionalPriceBreakdown: json['additional_price_breakdown'] != null
+          ? (json['additional_price_breakdown'] is List
+          ? List<dynamic>.from(json['additional_price_breakdown'])
+          : [])
+          : null,
+    );
+  }
 
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'title': title,
-        'type': type,
-        'additional_price': additionalPrice,
-        'additional_price_breakdown': additionalPriceBreakdown,
-      };
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'type': type,
+      'additional_price': additionalPrice,
+      'additional_price_breakdown': additionalPriceBreakdown,
+    };
+  }
 }

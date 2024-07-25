@@ -1,68 +1,137 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:shopping_app/core/utils/assets.dart';
 import 'package:shopping_app/features/search/presentation/manager/search_provider.dart';
 
-class SearchView extends StatelessWidget {
+class SearchView extends StatefulWidget {
   const SearchView({super.key});
+
+  @override
+  State<SearchView> createState() => _SearchViewState();
+}
+
+class _SearchViewState extends State<SearchView> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final searchProvider =
+          Provider.of<SearchProvider>(context, listen: false);
+      searchProvider.fetchCategories();
+      searchProvider.fetchProducts();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.only(
-            top: 70.0, left: 12.0, right: 12.0, bottom: 8.0),
+        padding: const EdgeInsets.only(top: 70.0, bottom: 6.0),
         child: Consumer<SearchProvider>(
           builder: (context, searchProvider, child) {
             return Column(
               children: [
-                TextFormField(
-                  onChanged: (value) => searchProvider.performSearch(),
-                  controller: searchProvider.textController,
-                  decoration: InputDecoration(
-                    fillColor: const Color(0xFFEEEEEE),
-                    filled: true,
-                    hintText: 'Search...',
-                    hintStyle: const TextStyle(
-                      fontSize: 18,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    prefixIcon: const Icon(
-                      Icons.search,
-                      size: 30,
-                      color: Colors.black,
-                    ),
-                    suffixIcon: IconButton(
-                      icon: const Icon(
-                        Icons.camera_alt_outlined,
-                        color: Colors.black,
-                        size: 30,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  child: TextFormField(
+                    onChanged: (value) => searchProvider.performSearch(),
+                    controller: searchProvider.textController,
+                    decoration: InputDecoration(
+                      fillColor: const Color(0xFFEEEEEE),
+                      filled: true,
+                      hintText: 'Search for products...',
+                      hintStyle: const TextStyle(fontSize: 18),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(16),
                       ),
-                      onPressed: () {
-                        searchProvider.clearSearch();
-                      },
+                      prefixIcon: const Icon(
+                        Icons.search,
+                        size: 30,
+                        color: Colors.black,
+                      ),
+                      suffixIcon: IconButton(
+                        icon: const Icon(
+                          Icons.camera_alt_outlined,
+                          color: Colors.black,
+                          size: 30,
+                        ),
+                        onPressed: () {
+                          searchProvider.clearSearch();
+                        },
+                      ),
                     ),
                   ),
                 ),
-                if (searchProvider.isSearching) ...[
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: searchProvider.searchResults.length,
-                      itemBuilder: (context, index) {
-                        final result = searchProvider.searchResults[index];
-                        return ListTile(
-                          title: Text(result),
-                          onTap: () {
-                            Navigator.pushNamed(context, '/details',
-                                arguments: result);
-                          },
-                        );
-                      },
+                if (searchProvider.isLoading) ...[
+                  const Expanded(
+                    child: Center(
+                      child: CircularProgressIndicator(),
                     ),
                   ),
+                ] else if (searchProvider.isSearching) ...[
+                  Expanded(
+                    child: searchProvider.searchResults.isEmpty
+                        ? Center(
+                            child: Text(
+                              'No results found',
+                              style: GoogleFonts.gabarito(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          )
+                        : ListView.builder(
+                            itemCount: searchProvider.searchResults.length,
+                            itemBuilder: (context, index) {
+                              final result =
+                                  searchProvider.searchResults[index];
+                              return Card(
+                                margin: const EdgeInsets.symmetric(
+                                    vertical: 8.0, horizontal: 16.0),
+                                elevation: 4.0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                                child: ListTile(
+                                  contentPadding: const EdgeInsets.all(8.0),
+                                  leading: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: Image.network(
+                                      result.image.toString(),
+                                      width: 80.0,
+                                      height: 80.0,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                  title: Text(
+                                    result.title.toString(),
+                                    style: GoogleFonts.gabarito(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  subtitle: Text(
+                                    result.description.toString(),
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: GoogleFonts.gabarito(
+                                      fontSize: 14,
+                                      color: Colors.black54,
+                                    ),
+                                  ),
+                                  onTap: () {
+                                    Navigator.pushNamed(context, '/details',
+                                        arguments: result);
+                                  },
+                                ),
+                              );
+                            },
+                          ),
+                  )
                 ] else ...[
                   Expanded(
                     child: GridView.builder(
@@ -77,31 +146,41 @@ class SearchView extends StatelessWidget {
                       itemBuilder: (context, index) {
                         final category = searchProvider.categories[index];
                         return GestureDetector(
-                          onTap: () {},
-                          child: GridTile(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Flexible(
-                                  child: AspectRatio(
-                                    aspectRatio: 1,
-                                    child: ClipRRect(
+                          onTap: () {
+                            Navigator.pushNamed(context, '/details',
+                                arguments: category);
+                          },
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
+                            child: GridTile(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Flexible(
+                                    child: AspectRatio(
+                                      aspectRatio: 1,
+                                      child: ClipRRect(
                                         borderRadius: BorderRadius.circular(10),
-                                        child: Image.asset(
-                                          AssetsData.img2,
+                                        child: Image.network(
+                                          category.imageUrl,
                                           fit: BoxFit.fill,
-                                        )),
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text('Clothing',
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      category.title,
                                       style: GoogleFonts.gabarito(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold,
-                                      )),
-                                ),
-                              ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         );

@@ -18,8 +18,8 @@ class HomeRepoImpl implements HomeRepo {
       var data = await apiService.get(endPoint: "categories");
       print(data);
       List<CategoriesModel> categoriesList = [];
-      if (data["results"]["categories"] != null) {
-        for (var item in data['items']["categories"]) {
+      if (data["result"]["categories"] != null) {
+        for (var item in data["result"]["categories"]) {
           categoriesList.add(CategoriesModel.fromJson(item));
         }
       } else {
@@ -43,8 +43,8 @@ class HomeRepoImpl implements HomeRepo {
       print(data);
 
       List<ProductsModel> productsList = [];
-      if (data["results"]["categories"] != null) {
-        for (var item in data['items']["categories"]) {
+      if (data["result"] != null) {
+        for (var item in data['result']) {
           productsList.add(ProductsModel.fromJson(item));
         }
       } else {
@@ -67,8 +67,8 @@ class HomeRepoImpl implements HomeRepo {
       var data = await apiService.get(endPoint: "products/$id");
       print(data);
       List<ProductModelAndHisVariants> productsList = [];
-      if (data["results"]["categories"] != null) {
-        for (var item in data['items']["categories"]) {
+      if (data["result"]["categories"] != null) {
+        for (var item in data['result']["categories"]) {
           productsList.add(ProductModelAndHisVariants.fromJson(item));
         }
       } else {
