@@ -1,7 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:shopping_app/core/utils/assets.dart';
 import 'package:shopping_app/features/search/presentation/manager/search_provider.dart';
 
 class SearchView extends StatelessWidget {
@@ -9,6 +10,9 @@ class SearchView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final searchProvider = Provider.of<SearchProvider>(context, listen: false);
+    searchProvider.fetchCategories();
+    searchProvider.fetchProducts();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(
@@ -23,10 +27,8 @@ class SearchView extends StatelessWidget {
                   decoration: InputDecoration(
                     fillColor: const Color(0xFFEEEEEE),
                     filled: true,
-                    hintText: 'Search...',
-                    hintStyle: const TextStyle(
-                      fontSize: 18,
-                    ),
+                    hintText: 'Search for products...',
+                    hintStyle: const TextStyle(fontSize: 18),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
@@ -54,7 +56,7 @@ class SearchView extends StatelessWidget {
                       itemBuilder: (context, index) {
                         final result = searchProvider.searchResults[index];
                         return ListTile(
-                          title: Text(result),
+                          title: Text(result.title.toString()),
                           onTap: () {
                             Navigator.pushNamed(context, '/details',
                                 arguments: result);
@@ -77,7 +79,10 @@ class SearchView extends StatelessWidget {
                       itemBuilder: (context, index) {
                         final category = searchProvider.categories[index];
                         return GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(context, '/details',
+                                arguments: category);
+                          },
                           child: GridTile(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,20 +91,23 @@ class SearchView extends StatelessWidget {
                                   child: AspectRatio(
                                     aspectRatio: 1,
                                     child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(10),
-                                        child: Image.asset(
-                                          AssetsData.img2,
-                                          fit: BoxFit.fill,
-                                        )),
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: Image.network(
+                                        category.imageUrl,
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text('Clothing',
-                                      style: GoogleFonts.gabarito(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                      )),
+                                  child: Text(
+                                    category.title,
+                                    style: GoogleFonts.gabarito(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),

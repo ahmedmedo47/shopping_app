@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/features/home/presentation/views/widgets/home_view/home_view_container_details_for_list.dart';
 import 'package:shopping_app/features/home/presentation/views/widgets/home_view/home_view_row_button.dart';
+
 class HomeViewDetailsForList extends StatelessWidget {
   const HomeViewDetailsForList({super.key, required this.categoryName});
   final String categoryName;
@@ -12,14 +13,19 @@ class HomeViewDetailsForList extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          HomeViewRowButton(categoryName: categoryName,),
+          HomeViewRowButton(
+            categoryName: categoryName,
+          ),
           SizedBox(
             height: height * 0.5,
             child: ListView.builder(
                 itemCount: 10,
                 scrollDirection: Axis.horizontal,
-                itemBuilder: (context,item){
-                  return  HomeViewContainerDetailsForList(image: "assets/images/1.jpg",price: "27,99 Є",);
+                itemBuilder: (context, item) {
+                  return HomeViewContainerDetailsForList(
+                    image: "assets/images/1.jpg",
+                    price: "27,99 Є",
+                  );
                 }),
           ),
         ],

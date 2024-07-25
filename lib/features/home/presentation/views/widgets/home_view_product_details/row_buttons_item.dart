@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/features/home/presentation/views/widgets/home_view_product_details/product_details_tile.dart';
+
 class RowButtonsItem extends StatefulWidget {
-   RowButtonsItem({super.key});
+  RowButtonsItem({super.key});
 
   @override
   State<RowButtonsItem> createState() => _ProductDetailsItemState();
@@ -24,15 +25,13 @@ class _ProductDetailsItemState extends State<RowButtonsItem> {
               height: 40,
               decoration: const BoxDecoration(
                 color: Colors.green,
-                borderRadius:
-                BorderRadius.all(Radius.circular(12)),
+                borderRadius: BorderRadius.all(Radius.circular(12)),
               ),
               child: const Center(
                   child: Text(
-                    "+ Add To Cart",
-                    style: TextStyle(
-                        fontSize: 20, color: Colors.white),
-                  )),
+                "+ Add To Cart",
+                style: TextStyle(fontSize: 20, color: Colors.white),
+              )),
             ),
           ),
         ),
@@ -44,11 +43,8 @@ class _ProductDetailsItemState extends State<RowButtonsItem> {
               borderRadius: BorderRadius.circular(10)),
           child: IconButton(
             icon: Icon(
-              widget.addedToTheCart
-                  ? Icons.favorite
-                  : Icons.favorite_border,
-              color:
-              widget.addedToTheCart ? Colors.red : Colors.black,
+              widget.addedToTheCart ? Icons.favorite : Icons.favorite_border,
+              color: widget.addedToTheCart ? Colors.red : Colors.black,
             ),
             onPressed: () {
               setState(() {
@@ -60,6 +56,7 @@ class _ProductDetailsItemState extends State<RowButtonsItem> {
       ],
     );
   }
+
   void _messageAlret(String title, String text) {
     showDialog(
       context: context,

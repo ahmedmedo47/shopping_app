@@ -71,18 +71,18 @@ class _HomeViewProductDetailsWidgetState
               color: Colors.black,
             ),
             child: Container(
-              width: width,
-              decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15))),
-              child:  DescOfProductDetails(price: widget.price,)
-            ),
+                width: width,
+                decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(15),
+                        topRight: Radius.circular(15))),
+                child: DescOfProductDetails(
+                  price: widget.price,
+                )),
           ),
         ),
       ],
     );
   }
-
 }

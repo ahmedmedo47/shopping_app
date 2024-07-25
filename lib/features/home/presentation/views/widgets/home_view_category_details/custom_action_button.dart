@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+
 class CustomTextButton extends StatelessWidget {
   const CustomTextButton({
     super.key,
@@ -37,7 +37,6 @@ class CustomTextButton extends StatelessWidget {
                     fontSize: 18,
                   ),
                 ),
-
               ],
             ),
           ),

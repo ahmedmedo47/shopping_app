@@ -17,8 +17,10 @@ class CategoryDetailsGridView extends StatelessWidget {
       itemBuilder: (context, i) {
         return const CategoryDetails();
       },
-      shrinkWrap: true, // هذه الخاصية تجعل GridView يضبط حجمه بناءً على محتوياته
-      physics: const NeverScrollableScrollPhysics(), // هذا يمنع GridView من التمرير نفسه
+      shrinkWrap:
+          true, // هذه الخاصية تجعل GridView يضبط حجمه بناءً على محتوياته
+      physics:
+          const NeverScrollableScrollPhysics(), // هذا يمنع GridView من التمرير نفسه
     );
   }
 }

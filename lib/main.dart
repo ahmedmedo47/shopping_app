@@ -6,6 +6,7 @@ import 'package:shopping_app/features/home/presentation/views/home_view.dart';
 import 'package:shopping_app/features/home/presentation/views/home_view_product_details_Screen.dart';
 import 'package:shopping_app/features/home/presentation/views/home_view_category_details.dart';
 import 'package:shopping_app/features/navigation_bar/presentaions/views/navigation_bar.dart';
+import 'package:shopping_app/features/search/data/repo/search_repository_impl.dart';
 import 'package:shopping_app/features/search/presentation/manager/search_provider.dart';
 import 'package:shopping_app/features/search/presentation/views/search_view.dart';
 
@@ -20,7 +21,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => SearchProvider()),
+        ChangeNotifierProvider(
+          create: (_) => SearchProvider(searchRepo: SearchRepoImpl()),
+        ),
         ChangeNotifierProvider(create: (_) => CartProvider()),
       ],
       child: MaterialApp(
@@ -28,10 +31,12 @@ class MyApp extends StatelessWidget {
         title: 'Shopping App',
         routes: {
           "cartView": (context) => const CartView(),
-          "homeViewCategoryDetails": (context) => const HomeViewCategoryDetails(),
-          "homeViewProductDetailsScreen": (context) => const HomeViewProductDetailsScreen(),
+          "homeViewCategoryDetails": (context) =>
+              const HomeViewCategoryDetails(),
+          "homeViewProductDetailsScreen": (context) =>
+              const HomeViewProductDetailsScreen(),
         },
-        home: const NavigationBarForApp(),
+        home: const SearchView(),
       ),
     );
   }

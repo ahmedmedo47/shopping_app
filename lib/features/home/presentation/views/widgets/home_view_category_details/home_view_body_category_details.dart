@@ -15,14 +15,17 @@ class HomeViewBodyCategoryDetails extends StatelessWidget {
         child: AppBar(
           backgroundColor: const Color(0xffFFFFFF),
           centerTitle: true,
-          leading: IconButton(icon: const Icon(Icons.arrow_back_ios_new),onPressed: (){
-            Navigator.of(context).pop();
-          },),
-          title:  Text(categoryName),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios_new),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          title: Text(categoryName),
         ),
       ),
       body: ListView(
-       // physics: NeverScrollableScrollPhysics(),
+        // physics: NeverScrollableScrollPhysics(),
         padding: const EdgeInsets.symmetric(horizontal: 18),
         children: const [
           SizedBox(height: 12),
