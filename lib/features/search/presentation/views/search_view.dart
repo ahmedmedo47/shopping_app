@@ -30,6 +30,7 @@ class SearchView extends StatelessWidget {
                     hintText: 'Search for products...',
                     hintStyle: const TextStyle(fontSize: 18),
                     border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
                       borderRadius: BorderRadius.circular(16),
                     ),
                     prefixIcon: const Icon(
