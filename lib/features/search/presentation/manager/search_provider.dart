@@ -12,7 +12,8 @@ class SearchProvider extends ChangeNotifier {
     fetchProducts();
     fetchCategories();
   }
-
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
   List<ProductModel> _products = [];
   List<ProductModel> get products => _products;
 
@@ -32,35 +33,49 @@ class SearchProvider extends ChangeNotifier {
   String get errorMessage => _errorMessage;
 
   Future<void> fetchProducts() async {
-    final Either<Failure, List<ProductModel>> result =
-        await searchRepo.fetchProducts();
-    result.fold(
-      (failure) {
-        _errorMessage = 'Failed to load products';
-        print(_errorMessage);
-        notifyListeners();
-      },
-      (products) {
-        _products = products;
-        notifyListeners();
-      },
-    );
+    _isLoading = true;
+    notifyListeners();
+    try {
+      final Either<Failure, List<ProductModel>> result =
+          await searchRepo.fetchProducts();
+      result.fold(
+        (failure) {
+          _errorMessage = 'Failed to load products';
+          print(_errorMessage);
+          notifyListeners();
+        },
+        (products) {
+          _products = products;
+          notifyListeners();
+        },
+      );
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
   }
 
   Future<void> fetchCategories() async {
-    final Either<Failure, List<CategoryModel>> result =
-        await searchRepo.fetchCategories();
-    result.fold(
-      (failure) {
-        _errorMessage = 'Failed to load categories';
-        print(_errorMessage);
-        notifyListeners();
-      },
-      (categories) {
-        _categories = categories;
-        notifyListeners();
-      },
-    );
+    _isLoading = true;
+    notifyListeners();
+    try {
+      final Either<Failure, List<CategoryModel>> result =
+          await searchRepo.fetchCategories();
+      result.fold(
+        (failure) {
+          _errorMessage = 'Failed to load categories';
+          print(_errorMessage);
+          notifyListeners();
+        },
+        (categories) {
+          _categories = categories;
+          notifyListeners();
+        },
+      );
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
   }
 
   void performSearch() {
