@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_app/features/home/data/models/products_model/products_model.dart';
 
 class CategoryDetails extends StatefulWidget {
-  const CategoryDetails({super.key});
+  const CategoryDetails({super.key, required this.product});
+  final ProductsModel product;
 
   @override
   _CategoryDetailsState createState() => _CategoryDetailsState();
@@ -33,9 +36,9 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                   Container(
                     height: 210,
                     width: double.infinity,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/images/test.webp'),
+                        image: NetworkImage(widget.product.image),
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -64,32 +67,20 @@ class _CategoryDetailsState extends State<CategoryDetails> {
             ),
           ),
           const SizedBox(height: 8),
-          const Row(
-            children: [
-              Text(
-                "34.99",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(width: 4),
-              Text(
-                "\$",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-            ],
-          ),
+           Text(
+             widget.product.title,
+             maxLines: 2,
+             style: TextStyle(
+               fontSize: 14,
+               fontWeight: FontWeight.bold,
+             ),
+           ),
           const SizedBox(height: 5),
-          const Opacity(
+           Opacity(
             opacity: .4,
             child: Text(
-              "Nike Training One Short Leggings ",
-              maxLines: 2, // Limit number of lines
+              widget.product.description,
+              maxLines: 1, // Limit number of lines
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 18,

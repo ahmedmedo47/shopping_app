@@ -23,7 +23,7 @@ class HomeViewDetailsForList extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           HomeViewRowButton(
-            category: category,
+            category: category, productList: productsList,
           ),
           SizedBox(
             height: height * 0.5,

@@ -3,7 +3,7 @@ import 'category.dart';
 
 class Products {
   int? id;
-  String? title;
+  String title;
   int? price;
   String? description;
   List<String>? images;
@@ -13,7 +13,7 @@ class Products {
 
   Products({
     this.id,
-    this.title,
+    required this.title,
     this.price,
     this.description,
     this.images,
@@ -24,7 +24,7 @@ class Products {
 
   factory Products.fromMap(Map<String, dynamic> data) => Products(
         id: data['id'] as int?,
-        title: data['title'] as String?,
+        title: data['title'] as String,
         price: data['price'] as int?,
         description: data['description'] as String?,
         images: data['images'] as List<String>?,

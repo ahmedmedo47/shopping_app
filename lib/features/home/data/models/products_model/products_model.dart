@@ -8,7 +8,7 @@ class ProductsModel {
   String? type;
   String description;
   String? typeName;
-  String? title;
+  String title;
   String? brand;
   String? model;
   String image;
@@ -28,7 +28,7 @@ class ProductsModel {
     this.type,
     required this.description,
     this.typeName,
-    this.title,
+    required this.title,
     this.brand,
     this.model,
     required this.image,
@@ -49,7 +49,7 @@ class ProductsModel {
         type: json['type'] as String?,
         description: json['description'] as String,
         typeName: json['type_name'] as String?,
-        title: json['title'] as String?,
+        title: json['title'] as String,
         brand: json['brand'] as String?,
         model: json['model'] as String?,
         image: json['image'] as String,
