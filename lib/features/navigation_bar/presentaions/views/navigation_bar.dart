@@ -4,6 +4,7 @@ import 'package:shopping_app/features/home/presentation/views/favorite_view.dart
 import 'package:shopping_app/features/home/presentation/views/home_view.dart';
 import 'package:shopping_app/features/search/presentation/views/search_view.dart';
 
+
 class NavigationBarForApp extends StatefulWidget {
   const NavigationBarForApp({super.key});
 
