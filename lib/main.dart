@@ -28,8 +28,10 @@ class MyApp extends StatelessWidget {
         title: 'Shopping App',
         routes: {
           "cartView": (context) => const CartView(),
-          "homeViewCategoryDetails": (context) => const HomeViewCategoryDetails(),
-          "homeViewProductDetailsScreen": (context) => const HomeViewProductDetailsScreen(),
+          "homeViewCategoryDetails": (context) =>
+              const HomeViewCategoryDetails(),
+          "homeViewProductDetailsScreen": (context) =>
+              const HomeViewProductDetailsScreen(),
         },
         home: const NavigationBarForApp(),
       ),

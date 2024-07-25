@@ -12,7 +12,6 @@ class CartProvider extends ChangeNotifier {
       title: 'Product 1',
       size: 'XL',
     ),
-
     CartItemModel(
       imageUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfZQWihoOXt4U0Bi--pKEFf0gZrymLOJeymA&s',
