@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/features/home/data/models/categories_model.dart';
 
 class HomeViewRowButton extends StatelessWidget {
-  const HomeViewRowButton({super.key, required this.categoryName});
-  final String categoryName;
+  const HomeViewRowButton({super.key, required this.categoriesList, required this.item});
+  final List<CategoriesModel> categoriesList;
+  final int item;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +16,7 @@ class HomeViewRowButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            categoryName,
+            categoriesList[item].title,
             style: const TextStyle(fontSize: 20, color: Colors.black),
           ),
           MaterialButton(
@@ -22,7 +24,7 @@ class HomeViewRowButton extends StatelessWidget {
             child: InkWell(
               onTap: () {
                 Navigator.pushNamed(context, "homeViewCategoryDetails",
-                    arguments: {"categoryName": categoryName});
+                    arguments: {"categoryName": categoriesList[item].title});
               },
               child: const Row(
                 children: [

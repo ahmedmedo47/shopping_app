@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/features/home/data/models/products_model/products_model.dart';
 
 class HomeViewContainerDetailsForList extends StatefulWidget {
   HomeViewContainerDetailsForList(
-      {super.key, required this.image, required this.price});
-  final String image;
-  final String price;
+      {super.key, required this.productsList, required this.item});
+  final List<ProductsModel> productsList;
   bool addedToTheCart = false;
+  final int item;
 
   @override
   State<HomeViewContainerDetailsForList> createState() =>
@@ -24,8 +25,8 @@ class _HomeViewContainerDetailsForListState
           onTap: () {
             Navigator.pushNamed(context, "homeViewProductDetailsScreen",
                 arguments: {
-                  "image": widget.image,
-                  "price": widget.price,
+                  "image": widget.productsList[widget.item].image,
+                  "price": "10",
                 });
           },
           child: Stack(
@@ -44,25 +45,27 @@ class _HomeViewContainerDetailsForListState
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         image: DecorationImage(
-                            image: AssetImage(widget.image), fit: BoxFit.fill),
+                            image: NetworkImage(widget.productsList[widget.item].image), fit: BoxFit.fill),
                       ),
                     ),
                     const SizedBox(
                       height: 10,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
-                      child: Text(
-                        widget.price,
-                        style:
-                            const TextStyle(fontSize: 20, color: Colors.black),
-                      ),
-                    ),
                     const Padding(
                       padding: EdgeInsets.only(left: 15.0),
                       child: Text(
-                        "Noisy May short oversized sweatshirt in gray",
-                        style: TextStyle(fontSize: 15, color: Colors.black26),
+                        "10",
+                        style:
+                            TextStyle(fontSize: 20, color: Colors.black),
+                      ),
+                    ),
+                     Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: Text(
+                        widget.productsList[widget.item].description,
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(fontSize: 15, color: Colors.black26,),
                       ),
                     )
                   ],
