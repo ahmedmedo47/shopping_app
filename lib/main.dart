@@ -9,6 +9,9 @@ import 'package:shopping_app/features/home/manager/fetch_all_categories/fetch_al
 import 'package:shopping_app/features/home/manager/fetch_all_products/fetch_all_products_cubit.dart';
 import 'package:shopping_app/features/home/presentation/views/home_view.dart';
 import 'package:shopping_app/features/cart/presentation/manager/cart_provider.dart';
+import 'package:shopping_app/features/home/presentation/views/home_view_category_details.dart';
+import 'package:shopping_app/features/home/presentation/views/home_view_product_details_Screen.dart';
+import 'package:shopping_app/features/navigation_bar/presentaions/views/navigation_bar.dart';
 import 'package:shopping_app/features/search/presentation/manager/search_provider.dart';
 
 void main() {
@@ -49,10 +52,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Shopping App',
       routes: {
-        "homeView": (context) => const HomeView(),
-        // other routes
+        "homeViewCategoryDetails": (context) => const HomeViewCategoryDetails(),
+        "homeViewProductDetailsScreen": (context) => const HomeViewProductDetailsScreen(),
       },
-      home: const HomeView(),
+      home: NavigationBarForApp(),
     );
   }
 }

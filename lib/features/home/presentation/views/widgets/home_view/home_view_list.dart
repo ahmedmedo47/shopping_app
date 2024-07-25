@@ -4,16 +4,25 @@ import 'package:shopping_app/features/home/data/models/products_model/products_m
 import 'package:shopping_app/features/home/presentation/views/widgets/home_view/home_view_details_for_list.dart';
 
 class HomeViewList extends StatelessWidget {
-  HomeViewList({super.key, required this.categoriesList, required this.productsList});
-  final List<CategoriesModel> categoriesList;
-  final List<ProductsModel> productsList;
+  const HomeViewList({
+    super.key,
+    required this.categoriesList,
+    required this.categorizedProducts,
+  });
 
-   Widget build(BuildContext context) {
+  final List<CategoriesModel> categoriesList;
+  final Map<int, List<ProductsModel>> categorizedProducts;
+
+  @override
+  Widget build(BuildContext context) {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
-        (context, index) {
+            (context, index) {
+          final category = categoriesList[index];
+          final products = categorizedProducts[category.id!] ?? [];
           return HomeViewDetailsForList(
-            categoriesList: categoriesList, item: index, productsList: productsList,
+            category: category,
+            productsList: products,
           );
         },
         childCount: categoriesList.length,

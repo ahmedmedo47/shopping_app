@@ -5,10 +5,14 @@ import 'package:shopping_app/features/home/presentation/views/widgets/home_view/
 import 'package:shopping_app/features/home/presentation/views/widgets/home_view/home_view_row_button.dart';
 
 class HomeViewDetailsForList extends StatelessWidget {
-  const HomeViewDetailsForList({super.key, required this.categoriesList, required this.item, required this.productsList});
-  final List<CategoriesModel> categoriesList;
+  const HomeViewDetailsForList({
+    super.key,
+    required this.category,
+    required this.productsList,
+  });
+
+  final CategoriesModel category;
   final List<ProductsModel> productsList;
-  final int item;
 
   @override
   Widget build(BuildContext context) {
@@ -19,17 +23,19 @@ class HomeViewDetailsForList extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           HomeViewRowButton(
-            categoriesList: categoriesList, item: item,
+            category: category,
           ),
           SizedBox(
             height: height * 0.5,
             child: ListView.builder(
-                itemCount: productsList.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, item) {
-                  return HomeViewContainerDetailsForList(productsList: productsList, item: item,
-                  );
-                }),
+              itemCount: productsList.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, itemIndex) {
+                return HomeViewContainerDetailsForList(
+                  product: productsList[itemIndex],
+                );
+              },
+            ),
           ),
         ],
       ),

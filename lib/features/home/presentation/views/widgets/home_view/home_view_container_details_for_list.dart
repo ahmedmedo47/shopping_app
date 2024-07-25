@@ -1,32 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/features/home/data/models/products_model/products_model.dart';
 
-class HomeViewContainerDetailsForList extends StatefulWidget {
-  HomeViewContainerDetailsForList(
-      {super.key, required this.productsList, required this.item});
-  final List<ProductsModel> productsList;
-  bool addedToTheCart = false;
-  final int item;
+class HomeViewContainerDetailsForList extends StatelessWidget {
+  const HomeViewContainerDetailsForList({
+    super.key,
+    required this.product,
+  });
 
-  @override
-  State<HomeViewContainerDetailsForList> createState() =>
-      _HomeViewContainerDetailsForListState();
-}
+  final ProductsModel product;
 
-class _HomeViewContainerDetailsForListState
-    extends State<HomeViewContainerDetailsForList> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.sizeOf(context).width;
     double height = MediaQuery.sizeOf(context).height;
+
     return Row(
       children: [
         InkWell(
           onTap: () {
             Navigator.pushNamed(context, "homeViewProductDetailsScreen",
                 arguments: {
-                  "image": widget.productsList[widget.item].image,
-                  "price": "10",
+                  "id": product.id,// You might want to replace this with the actual product price
                 });
           },
           child: Stack(
@@ -45,27 +39,17 @@ class _HomeViewContainerDetailsForListState
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         image: DecorationImage(
-                            image: NetworkImage(widget.productsList[widget.item].image), fit: BoxFit.fill),
+                            image: NetworkImage(product.image), fit: BoxFit.fill),
                       ),
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 15.0),
-                      child: Text(
-                        "10",
-                        style:
-                            TextStyle(fontSize: 20, color: Colors.black),
-                      ),
-                    ),
-                     Padding(
+                    const SizedBox(height: 10),
+                    Padding(
                       padding: const EdgeInsets.only(left: 15.0),
                       child: Text(
-                        widget.productsList[widget.item].description,
-                        maxLines: 3,
+                        product.description,
+                        maxLines: 4,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(fontSize: 15, color: Colors.black26,),
+                        style: const TextStyle(fontSize: 15, color: Colors.black26),
                       ),
                     )
                   ],
@@ -83,15 +67,11 @@ class _HomeViewContainerDetailsForListState
                   ),
                   child: IconButton(
                     onPressed: () {
-                      setState(() {
-                        widget.addedToTheCart = !widget.addedToTheCart;
-                      });
+                      // Handle adding to cart or favorites
                     },
                     icon: Icon(
-                      widget.addedToTheCart
-                          ? Icons.favorite
-                          : Icons.favorite_border,
-                      color: widget.addedToTheCart ? Colors.red : Colors.black,
+                      Icons.favorite_border,
+                      color: Colors.black,
                     ),
                   ),
                 ),
@@ -99,9 +79,7 @@ class _HomeViewContainerDetailsForListState
             ],
           ),
         ),
-        const SizedBox(
-          width: 20,
-        )
+        const SizedBox(width: 20),
       ],
     );
   }
