@@ -38,9 +38,9 @@ class CartView extends StatelessWidget {
                 const SizedBox(height: 20),
                 Expanded(
                   child: ListView.builder(
-                    itemCount: cartProvider.products.length,
+                    itemCount: cartProvider.items.length,
                     itemBuilder: (context, index) {
-                      final item = cartProvider.products[index];
+                      final item = cartProvider.items[index];
                       return CartItem(
                         item: item,
                         onRemove: () => cartProvider.removeItem(item),

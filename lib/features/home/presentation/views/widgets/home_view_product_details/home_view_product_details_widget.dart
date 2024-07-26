@@ -14,6 +14,20 @@ class HomeViewProductDetailsWidget extends StatefulWidget {
 
 class _HomeViewProductDetailsWidgetState extends State<HomeViewProductDetailsWidget> {
   final PageController _pageController = PageController();
+  int _currentIndex = 0;  // To keep track of the current page index
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController.addListener(() {
+      final pageIndex = _pageController.page?.round() ?? 0;
+      if (_currentIndex != pageIndex) {
+        setState(() {
+          _currentIndex = pageIndex;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,21 +74,15 @@ class _HomeViewProductDetailsWidgetState extends State<HomeViewProductDetailsWid
           child: Container(
             width: width,
             decoration: const BoxDecoration(
-              color: Colors.black,
+              color:  Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(15),
+                topRight: Radius.circular(15),
+              ),
             ),
-            child: Container(
-              width: width,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(15),
-                  topRight: Radius.circular(15),
-                ),
-              ),
-              child: DescOfProductDetails(
-                price: productModel.variants.isNotEmpty ? productModel.variants[0].price : 'N/A',
-                product: productModel,
-              ),
+            child: DescOfProductDetails(
+              index: _currentIndex,
+              product: productModel,
             ),
           ),
         ),

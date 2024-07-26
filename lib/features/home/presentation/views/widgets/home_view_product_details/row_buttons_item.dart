@@ -1,24 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_app/features/home/presentation/views/widgets/home_view_product_details/product_details_tile.dart';
+import 'package:provider/provider.dart';
+import 'package:shopping_app/features/cart/presentation/manager/cart_provider.dart';
+import 'package:shopping_app/features/home/data/models/product_model_and_his_variants/product_model_and_his_variants.dart';
+
+
 
 class RowButtonsItem extends StatefulWidget {
-  RowButtonsItem({super.key});
+  RowButtonsItem({super.key, required this.product, required this.index});
 
   @override
   State<RowButtonsItem> createState() => _ProductDetailsItemState();
   bool addedToTheCart = false;
+  final ProductModelAndHisVariants product;
+  final int index;
+
 }
 
 class _ProductDetailsItemState extends State<RowButtonsItem> {
   @override
   Widget build(BuildContext context) {
+    final cartProvider = Provider.of<CartProvider>(context);
     double width = MediaQuery.sizeOf(context).width;
     return Row(
       children: [
         Expanded(
           child: MaterialButton(
             onPressed: () {
-              _messageAlret("title", "text");
+              cartProvider.addItem(widget.product.variants[widget.index]);
             },
             child: Container(
               margin: const EdgeInsets.only(right: 8),

@@ -16,7 +16,7 @@ class CartHeader extends StatelessWidget {
       ),
       child: Consumer<CartProvider>(
         builder: (context, cartProvider, child) => Text(
-          '${cartProvider.products.length} Items',
+          '${cartProvider.items.length} Items',
           style: GoogleFonts.gabarito(
             fontSize: 18,
             fontWeight: FontWeight.bold,
