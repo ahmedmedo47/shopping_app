@@ -14,6 +14,7 @@ class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProvid
   late Animation <Offset> slidingAnimation;
   @override
   void initState() {
+    super.initState();
     initSlidingAnimation();
     navigateToHome();
 
@@ -28,18 +29,18 @@ class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProvid
   }
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     animationController.dispose();
   }
+  @override
   Widget build(BuildContext context) {
     return Column(
      // mainAxisAlignment: MainAxisAlignment.center,
      // crossAxisAlignment: CrossAxisAlignment.stretch,//بيسنتر العرض بتاع الايميج
       children: [
-        SizedBox(height: 130,),
+        const SizedBox(height: 130,),
         Center(
-          child: Container(
+          child: SizedBox(
             width: 380, height: 400,
             child:Lottie.asset("assets/images/Animation - shopping2.json",fit: BoxFit.fill) ,),
         ),
@@ -54,4 +55,3 @@ class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProvid
     animationController.forward();
   }
 }
-
