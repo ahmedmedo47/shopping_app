@@ -7,9 +7,16 @@ import 'package:shopping_app/features/home/manager/fetch_all_categories/fetch_al
 
 class FetchAllCategoriesCubit extends Cubit<FetchAllCategoriesState> {
   final HomeRepo homeRepo;
+  List<CategoriesModel>? _cachedCategories;
+
   FetchAllCategoriesCubit(this.homeRepo) : super(FetchAllCategoriesInitial());
 
   Future<void> fetchAllCategories() async {
+    if (_cachedCategories != null) {
+      emit(FetchAllCategoriesSuccess(categoriesList: _cachedCategories!));
+      return;
+    }
+
     emit(FetchAllCategoriesLoading());
     final Either<Failure, List<CategoriesModel>> data = await homeRepo.fetchAllCategories();
 
@@ -18,9 +25,9 @@ class FetchAllCategoriesCubit extends Cubit<FetchAllCategoriesState> {
         emit(FetchAllCategoriesFailure(failure.toString()));
       },
           (categoriesList) {
+        _cachedCategories = categoriesList;
         emit(FetchAllCategoriesSuccess(categoriesList: categoriesList));
       },
     );
   }
-
 }

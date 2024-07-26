@@ -17,8 +17,7 @@ import 'package:shopping_app/features/home/presentation/views/home_view_product_
 import 'package:shopping_app/features/navigation_bar/presentaions/views/navigation_bar.dart';
 import 'package:shopping_app/features/search/data/repo/search_repository_impl.dart';
 import 'package:shopping_app/features/search/presentation/manager/search_provider.dart';
-
-import 'features/splash/features/presentation/views/splash_view.dart';
+import 'package:shopping_app/features/splash/features/presentation/views/splash_view.dart';
 
 void main() {
   runApp(
@@ -69,11 +68,9 @@ class MyApp extends StatelessWidget {
         "homeViewProductDetailsScreen": (context) =>
             const HomeViewProductDetailsScreen(),
         "cartView": (context) => const CartView(),
-        "navigationBar":(context) => const NavigationBarForApp()
+        "navigationBar": (context) => const NavigationBarForApp(),
       },
-
-      home: const SplashView(),
-
+      home: SplashView(),
     );
   }
 }
