@@ -54,7 +54,7 @@ class _SearchViewState extends State<SearchView> {
                       ),
                       suffixIcon: IconButton(
                         icon: const Icon(
-                          Icons.camera_alt_outlined,
+                          Icons.close,
                           color: Colors.black,
                           size: 30,
                         ),
@@ -181,7 +181,7 @@ class _SearchViewState extends State<SearchView> {
                           onTap: () {
                             Navigator.pushNamed(
                                 context, '/homeViewCategoryDetails',
-                                arguments: category);
+                                arguments: category.id);
                           },
                           child: Padding(
                             padding:
