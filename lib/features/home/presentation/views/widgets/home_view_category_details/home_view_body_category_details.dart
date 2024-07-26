@@ -12,7 +12,7 @@ class HomeViewBodyCategoryDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white54,
+     // backgroundColor: Colors.white54,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(65.0),
         child: AppBar(
@@ -24,15 +24,15 @@ class HomeViewBodyCategoryDetails extends StatelessWidget {
               Navigator.of(context).pop();
             },
           ),
-          title: Text(categoryName),
+          title: Text(categoryName,style:const TextStyle(fontWeight: FontWeight.bold,fontSize:24),),
         ),
       ),
       body: ListView(
         // physics: NeverScrollableScrollPhysics(),
         padding: const EdgeInsets.symmetric(horizontal: 18),
         children:  [
-          const SizedBox(height: 12),
-          const ButtonAction(), // تأكد من تعريف هذا الودجت بشكل صحيح
+        //  const SizedBox(height: 12),
+         // const ButtonAction(), // تأكد من تعريف هذا الودجت بشكل صحيح
           const SizedBox(height: 20),
           CategoryDetailsGridView(productList: productList,), // تأكد من تعريف هذا الودجت بشكل صحيح
         ],

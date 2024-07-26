@@ -7,9 +7,16 @@ import 'package:shopping_app/features/home/manager/fetch_all_products/fetch_all_
 
 class FetchAllProductsCubit extends Cubit<FetchAllProductsState> {
   final HomeRepo homeRepo;
+  List<ProductsModel>? _cachedProducts;
+
   FetchAllProductsCubit(this.homeRepo) : super(FetchAllProductsInitial());
 
   Future<void> fetchAllProducts() async {
+    if (_cachedProducts != null) {
+      emit(FetchAllProductsSuccess(productsList: _cachedProducts!));
+      return;
+    }
+
     emit(FetchAllProductsLoading());
     final Either<Failure, List<ProductsModel>> data = await homeRepo.fetchAllProducts();
 
@@ -18,9 +25,9 @@ class FetchAllProductsCubit extends Cubit<FetchAllProductsState> {
         emit(FetchAllProductsFailure(failure.toString()));
       },
           (productsList) {
+        _cachedProducts = productsList;
         emit(FetchAllProductsSuccess(productsList: productsList));
       },
     );
   }
-
 }

@@ -14,42 +14,53 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  late Future<void> _fetchDataFuture;
+
   @override
   void initState() {
     super.initState();
-    // Fetch categories and products when the widget is first built
-    context.read<FetchAllCategoriesCubit>().fetchAllCategories();
-    context.read<FetchAllProductsCubit>().fetchAllProducts();
+    _fetchDataFuture = _fetchData();
+  }
+
+  Future<void> _fetchData() async {
+    await context.read<FetchAllCategoriesCubit>().fetchAllCategories();
+    await context.read<FetchAllProductsCubit>().fetchAllProducts();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffD6DAD8),
       body: Padding(
         padding: const EdgeInsets.only(top: 50),
-        child: BlocBuilder<FetchAllCategoriesCubit, FetchAllCategoriesState>(
-          builder: (context, categoryState) {
-            print("Category state: $categoryState");
-            return BlocBuilder<FetchAllProductsCubit, FetchAllProductsState>(
-              builder: (context, productState) {
-                print("Product state: $productState");
-                if (categoryState is FetchAllCategoriesLoading || productState is FetchAllProductsLoading) {
-                  return const Center(child: CircularProgressIndicator());
-                } else if (categoryState is FetchAllCategoriesSuccess && productState is FetchAllProductsSuccess) {
-                  return HomeViewWidget(
-                    categoriesList: categoryState.categoriesList,
-                    productsList: productState.productsList,
+        child: FutureBuilder<void>(
+          future: _fetchDataFuture,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            } else {
+              return BlocBuilder<FetchAllCategoriesCubit, FetchAllCategoriesState>(
+                builder: (context, categoryState) {
+                  return BlocBuilder<FetchAllProductsCubit, FetchAllProductsState>(
+                    builder: (context, productState) {
+                      if (categoryState is FetchAllCategoriesSuccess && productState is FetchAllProductsSuccess) {
+                        return HomeViewWidget(
+                          categoriesList: categoryState.categoriesList,
+                          productsList: productState.productsList,
+                        );
+                      } else if (categoryState is FetchAllCategoriesFailure) {
+                        return Center(child: Text(categoryState.errorMessage));
+                      } else if (productState is FetchAllProductsFailure) {
+                        return Center(child: Text(productState.errorMessage));
+                      } else {
+                        return const Center(child: Text('Unexpected state'));
+                      }
+                    },
                   );
-                } else if (categoryState is FetchAllCategoriesFailure) {
-                  return Center(child: Text(categoryState.errorMessage));
-                } else if (productState is FetchAllProductsFailure) {
-                  return Center(child: Text(productState.errorMessage));
-                } else {
-                  return const Center(child: Text('Unexpected state'));
-                }
-              },
-            );
+                },
+              );
+            }
           },
         ),
       ),

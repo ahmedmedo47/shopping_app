@@ -11,6 +11,7 @@ class HomeViewProductDetailsScreen extends StatelessWidget {
     final Map<String, dynamic> data = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     final int productId = data["id"];
 
+    // Ensure the product is fetched only once
     context.read<FetchOneProductCubit>().fetchOneProducts(id: productId);
 
     return Scaffold(
@@ -18,7 +19,6 @@ class HomeViewProductDetailsScreen extends StatelessWidget {
       body: BlocBuilder<FetchOneProductCubit, FetchOneProductState>(
         builder: (context, state) {
           if (state is FetchOneProductsLoading) {
-            // Show a single loading indicator while data is being fetched
             return const Center(child: CircularProgressIndicator());
           } else if (state is FetchOneProductsFailure) {
             return Center(child: Text(state.errorMessage));
