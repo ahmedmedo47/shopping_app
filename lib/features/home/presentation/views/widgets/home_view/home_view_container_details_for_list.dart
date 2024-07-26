@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/features/home/data/models/products_model/products_model.dart';
+import 'package:shopping_app/features/home/presentation/views/widgets/add_to_favouirte_widget.dart';
+
+import 'package:shopping_app/features/home/manager/product_provider.dart';
 
 class HomeViewContainerDetailsForList extends StatelessWidget {
   const HomeViewContainerDetailsForList({
@@ -21,7 +24,7 @@ class HomeViewContainerDetailsForList extends StatelessWidget {
             Navigator.pushNamed(
               context,
               "homeViewProductDetailsScreen",
-              arguments: {"id": product.id}, // Pass the product ID
+              arguments: {"id": product.id}, 
             );
           },
           child: Stack(
@@ -59,23 +62,7 @@ class HomeViewContainerDetailsForList extends StatelessWidget {
               Positioned(
                 bottom: height * .15,
                 right: 2,
-                child: Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: const Color(0xffecf0ec),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: IconButton(
-                    onPressed: () {
-                      // Handle adding to cart or favorites
-                    },
-                    icon: Icon(
-                      Icons.favorite_border,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
+                child:  AddToFavoriteWidget(productsModel: product,),
               ),
             ],
           ),

@@ -36,19 +36,33 @@ class CartView extends StatelessWidget {
               children: [
                 const CartHeader(),
                 const SizedBox(height: 20),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: cartProvider.products.length,
-                    itemBuilder: (context, index) {
-                      final item = cartProvider.products[index];
-                      return CartItem(
-                        item: item,
-                        onRemove: () => cartProvider.removeItem(item),
-                        onAdd: () => cartProvider.addItem(item),
-                      );
-                    },
+                if (cartProvider.items.isEmpty)
+                  Expanded(
+                    child: Center(
+                      child: Text(
+                        'No items added yet.',
+                        style: GoogleFonts.gabarito(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                  )
+                else
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: cartProvider.items.length,
+                      itemBuilder: (context, index) {
+                        final item = cartProvider.items[index];
+                        return CartItem(
+                          item: item,
+                          onRemove: () => cartProvider.removeItem(item),
+                          onAdd: () => cartProvider.addItem(item),
+                        );
+                      },
+                    ),
                   ),
-                ),
                 const OrderSummary(),
                 const SizedBox(height: 20),
                 CheckoutButton(width: width),

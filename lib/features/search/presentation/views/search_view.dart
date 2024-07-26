@@ -54,7 +54,7 @@ class _SearchViewState extends State<SearchView> {
                       ),
                       suffixIcon: IconButton(
                         icon: const Icon(
-                          Icons.camera_alt_outlined,
+                          Icons.close,
                           color: Colors.black,
                           size: 30,
                         ),
@@ -66,11 +66,40 @@ class _SearchViewState extends State<SearchView> {
                   ),
                 ),
                 if (searchProvider.isLoading) ...[
-                  const Expanded(
-                    child: Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  ),
+                  Expanded(
+                      child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.8),
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.2),
+                              blurRadius: 8.0,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const CircularProgressIndicator(
+                        strokeWidth: 6.0,
+                      ),
+                      Positioned(
+                        bottom: 50,
+                        child: Text(
+                          'Loading...',
+                          style: GoogleFonts.gabarito(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )),
                 ] else if (searchProvider.isSearching) ...[
                   Expanded(
                     child: searchProvider.searchResults.isEmpty
@@ -124,8 +153,11 @@ class _SearchViewState extends State<SearchView> {
                                     ),
                                   ),
                                   onTap: () {
-                                    Navigator.pushNamed(context, '/details',
-                                        arguments: result);
+                                    Navigator.pushNamed(
+                                      context,
+                                      '/homeViewProductDetailsScreen',
+                                      arguments: result.id,
+                                    );
                                   },
                                 ),
                               );
@@ -147,8 +179,9 @@ class _SearchViewState extends State<SearchView> {
                         final category = searchProvider.categories[index];
                         return GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, '/details',
-                                arguments: category);
+                            Navigator.pushNamed(
+                                context, '/homeViewCategoryDetails',
+                                arguments: category.id);
                           },
                           child: Padding(
                             padding:
