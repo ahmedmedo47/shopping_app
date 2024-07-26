@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/features/home/data/models/products_model/products_model.dart';
+import 'package:shopping_app/features/home/presentation/views/widgets/add_to_favouirte_widget.dart';
+
 import 'package:shopping_app/features/home/manager/product_provider.dart';
 
 class HomeViewContainerDetailsForList extends StatelessWidget {
@@ -60,23 +62,7 @@ class HomeViewContainerDetailsForList extends StatelessWidget {
               Positioned(
                 bottom: height * .15,
                 right: 2,
-                child: Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: const Color(0xffecf0ec),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: IconButton(
-                    onPressed: () {
-                      // Add to favorite
-                    },
-                    icon: const Icon(
-                      Icons.favorite_border,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
+                child: AddToFavouirteWidget(),
               ),
             ],
           ),

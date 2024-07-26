@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/features/home/data/models/products_model/products_model.dart';
+import 'package:shopping_app/features/home/presentation/views/widgets/add_to_favouirte_widget.dart';
 
 class CategoryDetails extends StatefulWidget {
   const CategoryDetails({super.key, required this.product});
@@ -11,14 +12,6 @@ class CategoryDetails extends StatefulWidget {
 }
 
 class _CategoryDetailsState extends State<CategoryDetails> {
-  bool isFavorite = false;
-
-  void toggleFavorite() {
-    setState(() {
-      isFavorite = !isFavorite;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -52,21 +45,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                   Positioned(
                     bottom: 2,
                     right: 2,
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: const Color(0xffecf0ec),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: IconButton(
-                        onPressed: toggleFavorite,
-                        icon: Icon(
-                          isFavorite ? Icons.favorite : Icons.favorite_border,
-                          color: isFavorite ? Colors.red : Colors.grey,
-                        ),
-                      ),
-                    ),
+                    child: AddToFavouirteWidget(),
                   ),
                 ],
               ),
