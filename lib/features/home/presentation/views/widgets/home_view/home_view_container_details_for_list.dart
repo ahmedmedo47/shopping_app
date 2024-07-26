@@ -18,10 +18,11 @@ class HomeViewContainerDetailsForList extends StatelessWidget {
       children: [
         InkWell(
           onTap: () {
-            Navigator.pushNamed(context, "homeViewProductDetailsScreen",
-                arguments: {
-                  "id": product.id,// You might want to replace this with the actual product price
-                });
+            Navigator.pushNamed(
+              context,
+              "homeViewProductDetailsScreen",
+              arguments: {"id": product.id}, // Pass the product ID
+            );
           },
           child: Stack(
             children: [

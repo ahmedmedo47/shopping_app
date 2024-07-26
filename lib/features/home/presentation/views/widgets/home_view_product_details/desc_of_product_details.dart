@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:shopping_app/features/home/presentation/views/widgets/home_view_product_details/product_details_tile.dart';
 import 'package:shopping_app/features/home/presentation/views/widgets/home_view_product_details/row_buttons_item.dart';
 
+import '../../../../data/models/product_model_and_his_variants/product_model_and_his_variants.dart';
+
+
 class DescOfProductDetails extends StatefulWidget {
-  const DescOfProductDetails({super.key, required this.price});
+   const DescOfProductDetails({super.key, required this.price,required this.product});
   final String price;
+  final ProductModelAndHisVariants product;
 
   @override
   State<DescOfProductDetails> createState() => _DescOfProductDetailsState();
@@ -24,16 +28,17 @@ class _DescOfProductDetailsState extends State<DescOfProductDetails> {
               widget.price,
               style: const TextStyle(color: Colors.black, fontSize: 20),
             ),
-            const Text(
-              "Details",
-              style: TextStyle(color: Colors.black38, fontSize: 14),
+             Text(
+              widget.product.variants[0].name,
+              style: TextStyle(color: Colors.black38, fontSize: 16),
             ),
             const ProductDetailsTile(
-                title: 'title', description: 'description'),
-            const ProductDetailsTile(
-                title: 'title', description: 'description'),
-            const ProductDetailsTile(
-                title: 'title', description: 'description'),
+                title: 'title', description:""),
+              ProductDetailsTile(
+                title: 'description', description:widget.product.product.description),
+            // const ProductDetailsTile(
+            //     title: 'title', description: 'description'),
+            Text("brand :${widget.product.product.brand}",style: TextStyle(fontSize: 22),),
             const SizedBox(height: 20),
             RowButtonsItem(),
           ],
