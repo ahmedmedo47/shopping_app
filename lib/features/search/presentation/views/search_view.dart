@@ -153,8 +153,11 @@ class _SearchViewState extends State<SearchView> {
                                     ),
                                   ),
                                   onTap: () {
-                                    Navigator.pushNamed(context, '/details',
-                                        arguments: result);
+                                    Navigator.pushNamed(
+                                      context,
+                                      '/homeViewProductDetailsScreen',
+                                      arguments: result.id,
+                                    );
                                   },
                                 ),
                               );
@@ -176,7 +179,8 @@ class _SearchViewState extends State<SearchView> {
                         final category = searchProvider.categories[index];
                         return GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, '/details',
+                            Navigator.pushNamed(
+                                context, '/homeViewCategoryDetails',
                                 arguments: category);
                           },
                           child: Padding(

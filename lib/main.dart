@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
         "homeViewProductDetailsScreen": (context) => const HomeViewProductDetailsScreen(),
         "cartView": (context) => const CartView(),
       },
-      home: NavigationBarForApp(),
+      home: const NavigationBarForApp(),
     );
   }
 }

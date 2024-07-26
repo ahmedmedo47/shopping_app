@@ -8,8 +8,8 @@ class HomeViewProductDetailsScreen extends StatelessWidget {
     Map<String, dynamic> data =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     int id = data["id"];
-    return Scaffold(
-      body: HomeViewProductDetailsWidget(
+    return const Scaffold(
+      body:  HomeViewProductDetailsWidget(
         price: "id",
       ),
     );
