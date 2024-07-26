@@ -30,7 +30,13 @@ class _CategoryDetailsState extends State<CategoryDetails> {
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  "homeViewProductDetailsScreen",
+                  arguments: {"id": widget.product.id}, // Pass the product ID
+                );
+              },
               child: Stack(
                 children: [
                   Container(
@@ -71,7 +77,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
              widget.product.title,
              maxLines: 2,
              style: TextStyle(
-               fontSize: 14,
+               fontSize: 20,
                fontWeight: FontWeight.bold,
              ),
            ),
@@ -80,7 +86,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
             opacity: .4,
             child: Text(
               widget.product.description,
-              maxLines: 1, // Limit number of lines
+              maxLines: 2, // Limit number of lines
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 18,

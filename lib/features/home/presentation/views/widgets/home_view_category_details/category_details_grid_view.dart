@@ -13,7 +13,7 @@ class CategoryDetailsGridView extends StatelessWidget {
         crossAxisCount: 2,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
-        childAspectRatio: 0.53,
+        childAspectRatio: 0.50,
       ),
       itemBuilder: (context, i) {
         return  CategoryDetails(product: productList[i],);
