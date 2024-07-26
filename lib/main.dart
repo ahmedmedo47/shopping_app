@@ -17,6 +17,8 @@ import 'package:shopping_app/features/navigation_bar/presentaions/views/navigati
 import 'package:shopping_app/features/search/data/repo/search_repository_impl.dart';
 import 'package:shopping_app/features/search/presentation/manager/search_provider.dart';
 
+import 'features/splash/features/presentation/views/splash_view.dart';
+
 void main() {
   runApp(
     MultiRepositoryProvider(
@@ -63,8 +65,9 @@ class MyApp extends StatelessWidget {
         "homeViewCategoryDetails": (context) => const HomeViewCategoryDetails(),
         "homeViewProductDetailsScreen": (context) => const HomeViewProductDetailsScreen(),
         "cartView": (context) => const CartView(),
+        "navigationBar":(context) => const NavigationBarForApp()
       },
-      home: NavigationBarForApp(),
+      home: const SplashView(),
     );
   }
 }
