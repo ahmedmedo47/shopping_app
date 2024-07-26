@@ -15,6 +15,7 @@ class HomeViewProductDetailsScreen extends StatelessWidget {
     context.read<FetchOneProductCubit>().fetchOneProducts(id: productId);
 
     return Scaffold(
+      backgroundColor: const Color(0xffD6DAD8),
       body: BlocBuilder<FetchOneProductCubit, FetchOneProductState>(
         builder: (context, state) {
           if (state is FetchOneProductsLoading) {

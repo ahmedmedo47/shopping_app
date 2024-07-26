@@ -4,9 +4,9 @@ class Variant {
   int? id;
   int? productId;
   String name;
-  String? size;
+  String size;
   String? color;
-  String? colorCode;
+  String colorCode;
   String? colorCode2; // Changed to String? for type safety
   String? image;
   String price;
@@ -18,9 +18,9 @@ class Variant {
     this.id,
     this.productId,
     required this.name,
-    this.size,
+    required this.size,
     this.color,
-    this.colorCode,
+    required this.colorCode,
     this.colorCode2,
     this.image,
     required this.price,
@@ -33,9 +33,9 @@ class Variant {
     id: json['id'] as int?,
     productId: json['product_id'] as int?,
     name: json['name'] as String,
-    size: json['size'] as String?,
+    size: json['size'] as String,
     color: json['color'] as String?,
-    colorCode: json['color_code'] as String?,
+    colorCode: json['color_code'] as String,
     colorCode2: json['color_code2'] as String?, // Changed to String? for type safety
     image: json['image'] as String?,
     price: json['price'] as String,

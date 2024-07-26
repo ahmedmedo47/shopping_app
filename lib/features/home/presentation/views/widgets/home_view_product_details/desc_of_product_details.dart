@@ -4,54 +4,62 @@ import 'package:shopping_app/features/home/presentation/views/widgets/home_view_
 import 'package:shopping_app/features/home/presentation/views/widgets/home_view_product_details/row_buttons_item.dart';
 import 'package:shopping_app/features/home/presentation/views/widgets/home_view_product_details/size_and_color_for_product_details.dart';
 
+// Utility function to convert hex color code to Color object
+Color hexToColor(String hex) {
+  final buffer = StringBuffer();
+  if (hex.length == 6 || hex.length == 7) buffer.write('ff');
+  buffer.write(hex.replaceFirst('#', ''));
+  return Color(int.parse(buffer.toString(), radix: 16));
+}
+
 class DescOfProductDetails extends StatefulWidget {
-  const DescOfProductDetails({super.key, required this.price, required this.product});
-  final String price;
+  const DescOfProductDetails({super.key, required this.index, required this.product});
   final ProductModelAndHisVariants product;
+  final int index;
 
   @override
   State<DescOfProductDetails> createState() => _DescOfProductDetailsState();
 }
 
 class _DescOfProductDetailsState extends State<DescOfProductDetails> {
-  String? _selectedSize;
 
   @override
   Widget build(BuildContext context) {
+    String colorCode = widget.product.variants[widget.index].colorCode; // Replace with actual field
+    Color color = hexToColor(colorCode);
+
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              widget.price,
+              "${widget.product.variants[widget.index].price} Є",
               style: const TextStyle(color: Colors.black, fontSize: 20),
             ),
+            const SizedBox(height: 8), // Adjust vertical spacing
             Text(
-              widget.product.variants[0].name,
+              widget.product.variants[widget.index].name,
               style: const TextStyle(color: Colors.black38, fontSize: 16),
             ),
+            const SizedBox(height: 16), // Adjust vertical spacing
             SizeAndColorForProductDetails(
-              selectedSize: _selectedSize,
-              onSizeChanged: (String? newSize) {
-                setState(() {
-                  _selectedSize = newSize;
-                  print("Selected size: $_selectedSize"); // Debug print
-                });
-              },
+              size: widget.product.variants[widget.index].size,
+              color: color, // Pass the color if you modify SizeAndColorForProductDetails to accept color
             ),
+            const SizedBox(height: 16), // Adjust vertical spacing
             ProductDetailsTile(
               title: 'description',
               description: widget.product.product.description,
             ),
+            const SizedBox(height: 16), // Adjust vertical spacing
             Text(
               "brand :${widget.product.product.brand}",
-              style: const TextStyle(fontSize: 22),
+              style: const TextStyle(fontSize: 22, color: Colors.black), // Example usage
             ),
-            const SizedBox(height: 20),
-             RowButtonsItem(),
+            const SizedBox(height: 20), // Adjust vertical spacing
+            RowButtonsItem(product: widget.product,index: widget.index,),
           ],
         ),
       ),
