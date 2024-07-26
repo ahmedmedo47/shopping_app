@@ -11,7 +11,6 @@ class HomeViewProductDetailsScreen extends StatelessWidget {
     final Map<String, dynamic> data = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     final int productId = data["id"];
 
-    // Trigger the fetch action using the existing cubit
     context.read<FetchOneProductCubit>().fetchOneProducts(id: productId);
 
     return Scaffold(
