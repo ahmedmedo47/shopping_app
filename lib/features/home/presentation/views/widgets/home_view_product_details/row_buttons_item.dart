@@ -43,7 +43,6 @@ class _ProductDetailsItemState extends State<RowButtonsItem> {
             ),
           ),
         ),
-        const AddToFavouirteWidget()
       ],
     );
   }

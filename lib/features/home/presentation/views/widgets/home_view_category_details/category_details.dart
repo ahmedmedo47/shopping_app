@@ -41,10 +41,10 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                       ),
                     ),
                   ),
-                  const Positioned(
+                   Positioned(
                     bottom: 2,
                     right: 2,
-                    child: AddToFavouirteWidget(),
+                    child: AddToFavouirteWidget(productsModel: widget.product,),
                   ),
                 ],
               ),
