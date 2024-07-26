@@ -17,7 +17,6 @@ class HomeRepoImpl implements HomeRepo {
   Future<Either<Failure, List<CategoriesModel>>> fetchAllCategories() async {
     try {
       var data = await apiService.get(endPoint: "categories");
-      print(data);
       List<CategoriesModel> categoriesList = [];
       if (data["result"]["categories"] != null) {
         for (var item in data["result"]["categories"]) {
@@ -29,10 +28,8 @@ class HomeRepoImpl implements HomeRepo {
       return right(categoriesList);
     } on Exception catch (e) {
       if (e is DioError) {
-        print('DioError occurred: ${e.message}');
         return left(ServerFailure.fromDioError(e));
       }
-      print('Exception occurred: $e');
       return left(ServerFailure(errorMessage: e.toString()));
     }
   }
@@ -41,7 +38,6 @@ class HomeRepoImpl implements HomeRepo {
   Future<Either<Failure, List<ProductsModel>>> fetchAllProducts() async {
     try {
       var data = await apiService.get(endPoint: "products/");
-      print(data);
 
       List<ProductsModel> productsList = [];
       if (data["result"] != null) {
@@ -54,10 +50,8 @@ class HomeRepoImpl implements HomeRepo {
       return right(productsList);
     } on Exception catch (e) {
       if (e is DioError) {
-        print('DioError occurred: ${e.message}');
         return left(ServerFailure.fromDioError(e));
       }
-      print('Exception occurred: $e');
       return left(ServerFailure(errorMessage: e.toString()));
     }
   }
@@ -67,21 +61,16 @@ class HomeRepoImpl implements HomeRepo {
   Future<Either<Failure, ProductModelAndHisVariants>> fetchOneProduct({required int id}) async {
     try {
       var data = await apiService.get(endPoint: "products/$id");
-      print(data);
-
       if (data["result"] != null) {
         final productModel = ProductModelAndHisVariants.fromJson(data["result"]);
-        print("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv$productModel");
         return right(productModel);
       } else {
         return left(ServerFailure(errorMessage: 'No items found'));
       }
     } on Exception catch (e) {
       if (e is DioError) {
-        print('DioError occurred: ${e.message}');
         return left(ServerFailure.fromDioError(e));
       }
-      print('Exception occurred: $e');
       return left(ServerFailure(errorMessage: e.toString()));
     }
   }
