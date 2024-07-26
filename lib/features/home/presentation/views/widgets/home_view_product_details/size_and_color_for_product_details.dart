@@ -20,17 +20,20 @@ class SizeAndColorForProductDetails extends StatelessWidget {
             children: [
               const Text(
                 "Color: ",
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: 24,fontWeight: FontWeight.w700),
               ),
-              CircleAvatar(
-                backgroundColor: color,
-                radius: 15,
+              Container(
+                color: Colors.grey,
+                child: CircleAvatar(
+                  backgroundColor: color,
+                  radius: 15,
+                ),
               ),
             ],
           ),
            Text(
             "Size: $size",
-            style: const TextStyle(fontSize: 16),
+            style: const TextStyle(fontSize: 24,fontWeight: FontWeight.w700),
           ),
         ],
       ),
