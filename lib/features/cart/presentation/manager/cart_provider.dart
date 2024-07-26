@@ -1,57 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/features/cart/data/models/cart_item_model.dart';
+import 'package:shopping_app/features/home/data/models/product_model_and_his_variants/variant.dart';
 
 class CartProvider extends ChangeNotifier {
-  final List<CartItemModel> _items = [];
-  List<CartItemModel> get items => _items;
-  final List<CartItemModel> products = [
-    CartItemModel(
-      imageUrl:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfZQWihoOXt4U0Bi--pKEFf0gZrymLOJeymA&s',
-      price: 1.0,
-      title: 'Product 1',
-      size: 'XL',
-    ),
-    CartItemModel(
-      imageUrl:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfZQWihoOXt4U0Bi--pKEFf0gZrymLOJeymA&s',
-      price: 50.0,
-      title: 'Product 2',
-      size: 'XL',
-      count: 2,
-    ),
-    CartItemModel(
-      imageUrl:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfZQWihoOXt4U0Bi--pKEFf0gZrymLOJeymA&s',
-      price: 1.0,
-      title: 'Product 3',
-      size: 'XL',
-    ),
-    CartItemModel(
-      imageUrl:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfZQWihoOXt4U0Bi--pKEFf0gZrymLOJeymA&s',
-      price: 1.0,
-      title: 'Product 4',
-      size: 'XL',
-    ),
-    CartItemModel(
-      imageUrl:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfZQWihoOXt4U0Bi--pKEFf0gZrymLOJeymA&s',
-      price: 1.0,
-      title: 'Product 5',
-      size: 'XL',
-    ),
-    CartItemModel(
-      imageUrl:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfZQWihoOXt4U0Bi--pKEFf0gZrymLOJeymA&s',
-      price: 1.0,
-      title: 'Product 6',
-      size: 'XL',
-    ),
-  ];
-  void addItem(CartItemModel item) {
+  final List<Variant> _items = [];
+  List<Variant> get items => _items;
+  void addItem(Variant item) {
+    print("added items is : $item");
     final existingItemIndex =
-        _items.indexWhere((element) => element.title == item.title);
+        _items.indexWhere((element) => element.name == item.name);
     if (existingItemIndex >= 0) {
       _items[existingItemIndex].count += 1;
     } else {
@@ -60,13 +17,13 @@ class CartProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removeItem(CartItemModel item) {
+  void removeItem(Variant item) {
     final existingItemIndex =
-        products.indexWhere((element) => element.title == item.title);
+        items.indexWhere((element) => element.name == item.name);
     if (existingItemIndex >= 0) {
-      products[existingItemIndex].count -= 1;
-      if (products[existingItemIndex].count == 0) {
-        products.removeAt(existingItemIndex);
+      items[existingItemIndex].count -= 1;
+      if (items[existingItemIndex].count == 0) {
+        items.removeAt(existingItemIndex);
       }
     }
     notifyListeners();
@@ -79,7 +36,7 @@ class CartProvider extends ChangeNotifier {
 
   double get totalAmount {
     double total = 0.0;
-    for (var item in products) {
+    for (var item in items) {
       total += item.price * item.count;
     }
     return total;

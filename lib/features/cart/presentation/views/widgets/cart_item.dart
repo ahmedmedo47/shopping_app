@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_app/features/cart/data/models/cart_item_model.dart';
+import 'package:shopping_app/features/home/data/models/product_model_and_his_variants/variant.dart';
 
 class CartItem extends StatelessWidget {
-  final CartItemModel item;
+  final Variant item;
   final VoidCallback onRemove;
   final VoidCallback onAdd;
 
@@ -32,7 +33,7 @@ class CartItem extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     child: Image.network(
                       fit: BoxFit.fill,
-                      item.imageUrl,
+                      item.image,
                       width: width * 0.3,
                       height: width * 0.3,
                     ),
@@ -43,14 +44,14 @@ class CartItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '${item.price.toStringAsFixed(2)}\u{20AC} ',
+                      '${item.price}\u{20AC} ',
                       style: GoogleFonts.gabarito(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      item.title,
+                      item.name,
                       style: GoogleFonts.gabarito(
                         fontSize: 18,
                         color: Colors.grey.shade600,
