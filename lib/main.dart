@@ -8,6 +8,7 @@ import 'package:shopping_app/features/home/data/repo/home_repo.dart';
 import 'package:shopping_app/features/home/data/repo/home_repo_impl.dart';
 import 'package:shopping_app/features/home/manager/fetch_all_categories/fetch_all_categories_cubit.dart';
 import 'package:shopping_app/features/home/manager/fetch_all_products/fetch_all_products_cubit.dart';
+import 'package:shopping_app/features/home/manager/fetch_one_product/fetch_one_product_cubit.dart';
 import 'package:shopping_app/features/home/presentation/views/home_view.dart';
 import 'package:shopping_app/features/cart/presentation/manager/cart_provider.dart';
 import 'package:shopping_app/features/home/presentation/views/home_view_category_details.dart';
@@ -33,6 +34,11 @@ void main() {
           ),
           BlocProvider<FetchAllCategoriesCubit>(
             create: (context) => FetchAllCategoriesCubit(
+              RepositoryProvider.of<HomeRepo>(context),
+            ),
+          ),
+          BlocProvider<FetchOneProductCubit>(
+            create: (context) => FetchOneProductCubit(
               RepositoryProvider.of<HomeRepo>(context),
             ),
           ),
