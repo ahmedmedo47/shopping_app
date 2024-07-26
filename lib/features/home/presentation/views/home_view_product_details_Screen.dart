@@ -15,8 +15,20 @@ class HomeViewProductDetailsScreen extends StatelessWidget {
     context.read<FetchOneProductCubit>().fetchOneProducts(id: productId);
 
     return Scaffold(
-      body: HomeViewProductDetailsWidget(
-        productId: productId,
+      body: BlocBuilder<FetchOneProductCubit, FetchOneProductState>(
+        builder: (context, state) {
+          if (state is FetchOneProductsLoading) {
+            // Show a single loading indicator while data is being fetched
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is FetchOneProductsFailure) {
+            return Center(child: Text(state.errorMessage));
+          } else if (state is FetchOneProductsSuccess) {
+            final productModel = state.productsList;
+            return HomeViewProductDetailsWidget(productModel: productModel);
+          } else {
+            return const Center(child: Text('Something went wrong!'));
+          }
+        },
       ),
     );
   }

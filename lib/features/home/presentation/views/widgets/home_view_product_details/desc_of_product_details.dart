@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/features/home/data/models/product_model_and_his_variants/product_model_and_his_variants.dart';
 import 'package:shopping_app/features/home/presentation/views/widgets/home_view_product_details/product_details_tile.dart';
 import 'package:shopping_app/features/home/presentation/views/widgets/home_view_product_details/row_buttons_item.dart';
-
-import '../../../../data/models/product_model_and_his_variants/product_model_and_his_variants.dart';
-
+import 'package:shopping_app/features/home/presentation/views/widgets/home_view_product_details/size_and_color_for_product_details.dart';
 
 class DescOfProductDetails extends StatefulWidget {
-   const DescOfProductDetails({super.key, required this.price,required this.product});
+  const DescOfProductDetails({super.key, required this.price, required this.product});
   final String price;
   final ProductModelAndHisVariants product;
 
@@ -15,6 +14,8 @@ class DescOfProductDetails extends StatefulWidget {
 }
 
 class _DescOfProductDetailsState extends State<DescOfProductDetails> {
+  String? _selectedSize;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,19 +29,29 @@ class _DescOfProductDetailsState extends State<DescOfProductDetails> {
               widget.price,
               style: const TextStyle(color: Colors.black, fontSize: 20),
             ),
-             Text(
+            Text(
               widget.product.variants[0].name,
-              style: TextStyle(color: Colors.black38, fontSize: 16),
+              style: const TextStyle(color: Colors.black38, fontSize: 16),
             ),
-            const ProductDetailsTile(
-                title: 'title', description:""),
-              ProductDetailsTile(
-                title: 'description', description:widget.product.product.description),
-            // const ProductDetailsTile(
-            //     title: 'title', description: 'description'),
-            Text("brand :${widget.product.product.brand}",style: TextStyle(fontSize: 22),),
+            SizeAndColorForProductDetails(
+              selectedSize: _selectedSize,
+              onSizeChanged: (String? newSize) {
+                setState(() {
+                  _selectedSize = newSize;
+                  print("Selected size: $_selectedSize"); // Debug print
+                });
+              },
+            ),
+            ProductDetailsTile(
+              title: 'description',
+              description: widget.product.product.description,
+            ),
+            Text(
+              "brand :${widget.product.product.brand}",
+              style: const TextStyle(fontSize: 22),
+            ),
             const SizedBox(height: 20),
-            RowButtonsItem(),
+             RowButtonsItem(),
           ],
         ),
       ),
