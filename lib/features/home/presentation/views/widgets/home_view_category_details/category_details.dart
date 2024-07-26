@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/features/home/data/models/products_model/products_model.dart';
-import 'package:shopping_app/features/home/presentation/views/widgets/add_to_favouirte_widget.dart';
+import 'package:shopping_app/features/home/presentation/views/widgets/add_to_favouirte_widget.dart'; // Corrected import
 
 class CategoryDetails extends StatefulWidget {
   const CategoryDetails({super.key, required this.product});
@@ -41,26 +41,28 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                       ),
                     ),
                   ),
-                   Positioned(
+                  Positioned(
                     bottom: 2,
                     right: 2,
-                    child: AddToFavouirteWidget(productsModel: widget.product,),
+                    child: AddToFavoriteWidget(
+                      productsModel: widget.product,
+                    ),
                   ),
                 ],
               ),
             ),
           ),
           const SizedBox(height: 8),
-           Text(
-             widget.product.title,
-             maxLines: 2,
-             style: const TextStyle(
-               fontSize: 18,
-               fontWeight: FontWeight.bold,
-             ),
-           ),
+          Text(
+            widget.product.title,
+            maxLines: 2,
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           const SizedBox(height: 5),
-           Opacity(
+          Opacity(
             opacity: .4,
             child: Text(
               widget.product.description,

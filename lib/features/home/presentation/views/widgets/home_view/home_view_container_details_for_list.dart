@@ -62,7 +62,7 @@ class HomeViewContainerDetailsForList extends StatelessWidget {
               Positioned(
                 bottom: height * .15,
                 right: 2,
-                child:  AddToFavouirteWidget(productsModel: product,),
+                child:  AddToFavoriteWidget(productsModel: product,),
               ),
             ],
           ),

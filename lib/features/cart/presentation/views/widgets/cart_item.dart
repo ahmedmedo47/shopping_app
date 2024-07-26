@@ -89,7 +89,7 @@ class CartItem extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(4),
                       height: 35,
-                      width: 30,
+                      width: 45,
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(8)),
                         color: Color(0xFFD8F2E5),
@@ -107,6 +107,8 @@ class CartItem extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Container(
+                      height: 35,
+                      width: 45,
                       padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
                         borderRadius:

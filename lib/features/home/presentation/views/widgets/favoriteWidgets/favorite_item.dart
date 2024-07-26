@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopping_app/features/home/data/models/product_model_and_his_variants/variant.dart';
 import 'package:shopping_app/features/home/data/models/products_model/products_model.dart';
 import 'package:shopping_app/features/home/manager/product_provider.dart';
 
@@ -12,72 +11,65 @@ class FavoriteItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * .26,
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+      margin: const EdgeInsets.only(top: 16),
+      height: MediaQuery.of(context).size.height * .2,
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(16),
         color: Colors.white,
         boxShadow: const [
           BoxShadow(
             color: Colors.black12,
-            blurRadius: 10,
-            spreadRadius: 5,
-            offset: Offset(0, 5),
+            blurRadius: 12,
+            spreadRadius: 4,
+            offset: Offset(0, 4),
           ),
         ],
       ),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(16),
             child: Image.network(
               item.image,
               width: 100,
               height: 100,
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
             ),
           ),
-          const SizedBox(width: 20),
+          const SizedBox(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   item.title,
                   overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
+                  maxLines: 1,
                   style: const TextStyle(
                     fontSize: 18,
-                    fontFamily: "GTSectraFine",
                     fontWeight: FontWeight.w600,
+                    color: Colors.black87,
                   ),
                 ),
+                const SizedBox(height: 4),
                 Text(
                   item.description,
-                  style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+                  style: TextStyle(fontSize: 14, color: Colors.grey[700]),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    /*Text(
-                      '${item.price} \$',
-                      style: const TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.green,
-                      ),
-                    ),*/
-                    IconButton(
-                      icon: const Icon(Icons.favorite),
-                      onPressed: () {
-                        Provider.of<FavoritesProvider>(context, listen: false)
-                            .removeFavorite(item);
-                      },
-                    ),
-                  ],
+                const Spacer(),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: IconButton(
+                    icon: const Icon(Icons.favorite, color: Colors.red),
+                    onPressed: () {
+                      Provider.of<FavoritesProvider>(context, listen: false)
+                          .removeFavorite(item);
+                    },
+                  ),
                 ),
               ],
             ),
