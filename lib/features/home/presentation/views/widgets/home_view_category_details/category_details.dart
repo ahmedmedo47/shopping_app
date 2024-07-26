@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/features/home/data/models/products_model/products_model.dart';
 import 'package:shopping_app/features/home/presentation/views/widgets/add_to_favouirte_widget.dart';
@@ -42,7 +41,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                       ),
                     ),
                   ),
-                  Positioned(
+                  const Positioned(
                     bottom: 2,
                     right: 2,
                     child: AddToFavouirteWidget(),
@@ -55,8 +54,8 @@ class _CategoryDetailsState extends State<CategoryDetails> {
            Text(
              widget.product.title,
              maxLines: 2,
-             style: TextStyle(
-               fontSize: 20,
+             style: const TextStyle(
+               fontSize: 18,
                fontWeight: FontWeight.bold,
              ),
            ),
@@ -67,7 +66,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
               widget.product.description,
               maxLines: 2, // Limit number of lines
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 color: Colors.black,
               ),

@@ -7,7 +7,7 @@ import 'package:shopping_app/features/home/presentation/views/widgets/add_to_fav
 
 
 class RowButtonsItem extends StatefulWidget {
-  RowButtonsItem({super.key, required this.product, required this.index});
+  const RowButtonsItem({super.key, required this.product, required this.index});
 
   @override
   State<RowButtonsItem> createState() => _ProductDetailsItemState();
@@ -25,6 +25,7 @@ class _ProductDetailsItemState extends State<RowButtonsItem> {
         Expanded(
           child: MaterialButton(
             onPressed: () {
+              _messageAlret("", "Added To the cart successfully!");
               cartProvider.addItem(widget.product.variants[widget.index]);
             },
             child: Container(
@@ -42,7 +43,7 @@ class _ProductDetailsItemState extends State<RowButtonsItem> {
             ),
           ),
         ),
-        AddToFavouirteWidget()
+        const AddToFavouirteWidget()
       ],
     );
   }
