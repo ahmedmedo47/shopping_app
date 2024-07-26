@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_app/features/home/data/models/products_model/products_model.dart';
+import 'package:shopping_app/features/home/data/models/product_model_and_his_variants/variant.dart';
 
-class ProductsProvider with ChangeNotifier {
-  List<ProductsModel> _favoriteProducts = [];
+class FavoritesProvider extends ChangeNotifier {
+  List<Variant> _favorites = [];
 
-  List<ProductsModel> get favoriteProducts => _favoriteProducts;
+  List<Variant> get favorites => _favorites;
 
-  void addFavorite(ProductsModel product) {
-    if (!_favoriteProducts.contains(product)) {
-      _favoriteProducts.add(product);
-      notifyListeners();
-    }
+  void addFavorite(Variant product) {
+    _favorites.add(product);
+    notifyListeners();
   }
 
-  void removeFavorite(ProductsModel product) {
-    if (_favoriteProducts.contains(product)) {
-      _favoriteProducts.remove(product);
-      notifyListeners();
-    }
+  void removeFavorite(Variant product) {
+    _favorites.remove(product);
+    notifyListeners();
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/features/home/data/models/products_model/products_model.dart';
+import 'package:shopping_app/features/home/manager/product_provider.dart';
 
 class HomeViewContainerDetailsForList extends StatelessWidget {
   const HomeViewContainerDetailsForList({
@@ -21,7 +22,7 @@ class HomeViewContainerDetailsForList extends StatelessWidget {
             Navigator.pushNamed(
               context,
               "homeViewProductDetailsScreen",
-              arguments: {"id": product.id}, // Pass the product ID
+              arguments: {"id": product.id}, 
             );
           },
           child: Stack(
@@ -68,9 +69,9 @@ class HomeViewContainerDetailsForList extends StatelessWidget {
                   ),
                   child: IconButton(
                     onPressed: () {
-                      // Handle adding to cart or favorites
+                      // Add to favorite
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.favorite_border,
                       color: Colors.black,
                     ),
