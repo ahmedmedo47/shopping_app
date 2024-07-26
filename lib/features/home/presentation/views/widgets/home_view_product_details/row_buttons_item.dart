@@ -4,6 +4,7 @@ import 'package:shopping_app/features/cart/presentation/manager/cart_provider.da
 import 'package:shopping_app/features/home/data/models/product_model_and_his_variants/product_model_and_his_variants.dart';
 
 
+
 class RowButtonsItem extends StatefulWidget {
   RowButtonsItem({super.key, required this.product, required this.index});
 
@@ -19,6 +20,7 @@ class _ProductDetailsItemState extends State<RowButtonsItem> {
   @override
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartProvider>(context);
+    double width = MediaQuery.sizeOf(context).width;
     return Row(
       children: [
         Expanded(
@@ -27,7 +29,7 @@ class _ProductDetailsItemState extends State<RowButtonsItem> {
               cartProvider.addItem(widget.product.variants[widget.index]);
             },
             child: Container(
-              margin: EdgeInsets.only(right: 8),
+              margin: const EdgeInsets.only(right: 8),
               height: 40,
               decoration: const BoxDecoration(
                 color: Colors.green,
