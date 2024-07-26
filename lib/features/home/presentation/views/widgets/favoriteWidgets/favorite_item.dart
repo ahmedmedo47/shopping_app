@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopping_app/features/home/data/models/products_model/products_model.dart';
+import 'package:shopping_app/features/home/data/models/product_model_and_his_variants/variant.dart';
 import 'package:shopping_app/features/home/manager/product_provider.dart';
 
 class FavoriteItem extends StatelessWidget {
-  final ProductsModel product;
+  final Variant item;
 
-  const FavoriteItem({super.key, required this.product});
+  const FavoriteItem({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
-    final productsProvider = Provider.of<ProductsProvider>(context);
-    final isFavorite = productsProvider.favoriteProducts.contains(product);
-
     return Container(
       height: MediaQuery.of(context).size.height * .26,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
@@ -32,8 +29,12 @@ class FavoriteItem extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Image.asset(product.image,
-                width: 100, height: 100, fit: BoxFit.cover),
+            child: Image.network(
+              item.image,
+              width: 100,
+              height: 100,
+              fit: BoxFit.cover,
+            ),
           ),
           const SizedBox(width: 20),
           Expanded(
@@ -42,17 +43,17 @@ class FavoriteItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  product.title,
+                  item.name,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
                   style: const TextStyle(
                     fontSize: 18,
                     fontFamily: "GTSectraFine",
                     fontWeight: FontWeight.w600,
                   ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
                 ),
                 Text(
-                  product.description,
+                  item.name,
                   style: TextStyle(fontSize: 14, color: Colors.grey[600]),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
@@ -61,40 +62,18 @@ class FavoriteItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "${product.currency}${product.variantCount ?? 0}",
+                      '${item.price} \$',
                       style: const TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
                         color: Colors.green,
                       ),
                     ),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.star,
-                          color: Colors.yellow[700],
-                        ),
-                        const SizedBox(width: 4),
-                        const Text(
-                          "4.8",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
                     IconButton(
-                      icon: Icon(
-                        isFavorite ? Icons.favorite : Icons.favorite_border,
-                        color: isFavorite ? Colors.red : Colors.grey,
-                      ),
+                      icon: const Icon(Icons.favorite_border),
                       onPressed: () {
-                        if (isFavorite) {
-                          productsProvider.removeFavorite(product);
-                        } else {
-                          productsProvider.addFavorite(product);
-                        }
+                        Provider.of<FavoritesProvider>(context, listen: false)
+                            .addFavorite(item);
                       },
                     ),
                   ],
