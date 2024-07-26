@@ -46,7 +46,7 @@ void main() {
           ChangeNotifierProvider(
               create: (_) => SearchProvider(searchRepo: SearchRepoImpl())),
           ChangeNotifierProvider(create: (_) => CartProvider()),
-          ChangeNotifierProvider(create: (_) => ProductsProvider()),
+          ChangeNotifierProvider(create: (_) => FavoritesProvider()),
         ],
         child: const MyApp(),
       ),

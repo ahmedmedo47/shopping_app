@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shopping_app/features/home/data/models/products_model/products_model.dart';
 import 'package:shopping_app/features/home/presentation/views/widgets/add_to_favouirte_widget.dart';
 
+import 'package:shopping_app/features/home/manager/product_provider.dart';
+
 class HomeViewContainerDetailsForList extends StatelessWidget {
   const HomeViewContainerDetailsForList({
     super.key,
@@ -22,7 +24,7 @@ class HomeViewContainerDetailsForList extends StatelessWidget {
             Navigator.pushNamed(
               context,
               "homeViewProductDetailsScreen",
-              arguments: {"id": product.id}, // Pass the product ID
+              arguments: {"id": product.id}, 
             );
           },
           child: Stack(
