@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_app/features/home/data/models/product_model_and_his_variants/variant.dart';
+import 'package:shopping_app/features/home/data/models/products_model/products_model.dart';
 import 'package:shopping_app/features/home/manager/product_provider.dart';
 
 class FavoriteItem extends StatelessWidget {
-  final Variant item;
+  final ProductsModel item;
 
   const FavoriteItem({super.key, required this.item});
 
@@ -43,7 +44,7 @@ class FavoriteItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  item.name,
+                  item.title,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   style: const TextStyle(
@@ -53,7 +54,7 @@ class FavoriteItem extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  item.name,
+                  item.description,
                   style: TextStyle(fontSize: 14, color: Colors.grey[600]),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
@@ -61,19 +62,19 @@ class FavoriteItem extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    /*Text(
                       '${item.price} \$',
                       style: const TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
                         color: Colors.green,
                       ),
-                    ),
+                    ),*/
                     IconButton(
-                      icon: const Icon(Icons.favorite_border),
+                      icon: const Icon(Icons.favorite),
                       onPressed: () {
                         Provider.of<FavoritesProvider>(context, listen: false)
-                            .addFavorite(item);
+                            .removeFavorite(item);
                       },
                     ),
                   ],

@@ -6,7 +6,7 @@ class CustomAppbarForDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(30.0),
+      padding: const EdgeInsets.only(top : 50.0,right: 30,left: 30),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -14,7 +14,7 @@ class CustomAppbarForDetailsScreen extends StatelessWidget {
             width: 30,
             height: 30,
             decoration: const BoxDecoration(
-                color: Colors.white,
+                color: const Color(0xffD6DAD8),
                 borderRadius: BorderRadius.all(Radius.circular(10))),
             child: Center(
               child: IconButton(
@@ -33,7 +33,7 @@ class CustomAppbarForDetailsScreen extends StatelessWidget {
             width: 30,
             height: 30,
             decoration: const BoxDecoration(
-                color: Colors.white,
+                color: const Color(0xffD6DAD8),
                 borderRadius: BorderRadius.all(Radius.circular(10))),
             child: Center(
               child: Center(
