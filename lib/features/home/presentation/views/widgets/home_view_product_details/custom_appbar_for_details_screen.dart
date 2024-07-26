@@ -14,7 +14,7 @@ class CustomAppbarForDetailsScreen extends StatelessWidget {
             width: 30,
             height: 30,
             decoration: const BoxDecoration(
-                color: const Color(0xffD6DAD8),
+                color:  Color(0xffD6DAD8),
                 borderRadius: BorderRadius.all(Radius.circular(10))),
             child: Center(
               child: IconButton(
@@ -33,7 +33,7 @@ class CustomAppbarForDetailsScreen extends StatelessWidget {
             width: 30,
             height: 30,
             decoration: const BoxDecoration(
-                color: const Color(0xffD6DAD8),
+                color:  Color(0xffD6DAD8),
                 borderRadius: BorderRadius.all(Radius.circular(10))),
             child: Center(
               child: Center(

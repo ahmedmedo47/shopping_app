@@ -56,9 +56,9 @@ class _DescOfProductDetailsState extends State<DescOfProductDetails> {
             const SizedBox(height: 16), // Adjust vertical spacing
             Row(
               children: [
-                Text(
+                const Text(
                   "brand : ",
-                  style: const TextStyle(fontSize: 24, color: Colors.black,fontWeight: FontWeight.w600),
+                  style: TextStyle(fontSize: 24, color: Colors.black,fontWeight: FontWeight.w600),
                   // Example usage
                 ),
                 Text("${widget.product.product.brand}",style: const TextStyle(fontSize: 20, color: Colors.black,fontWeight: FontWeight.w500))

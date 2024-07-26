@@ -15,7 +15,7 @@ class ProductDetailsTile extends StatelessWidget {
       ),
       children: <Widget>[
         ListTile(
-          title: Text(description,style: TextStyle(color: Color(0xFF6C6C6C),fontSize:16),),
+          title: Text(description,style: const TextStyle(color: Color(0xFF6C6C6C),fontSize:16),),
         ),
       ],
     );

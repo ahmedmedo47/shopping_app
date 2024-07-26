@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:shopping_app/features/home/data/models/categories_model.dart';
