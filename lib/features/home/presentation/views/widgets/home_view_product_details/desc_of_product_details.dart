@@ -36,12 +36,12 @@ class _DescOfProductDetailsState extends State<DescOfProductDetails> {
           children: [
             Text(
               "${widget.product.variants[widget.index].price} Є",
-              style: const TextStyle(color: Colors.black, fontSize: 20),
+              style: const TextStyle(color: Color(0xff007D43), fontSize:24,fontWeight: FontWeight.w900),
             ),
             const SizedBox(height: 8), // Adjust vertical spacing
             Text(
               widget.product.variants[widget.index].name,
-              style: const TextStyle(color: Colors.black38, fontSize: 16),
+              style: const TextStyle(color: Colors.black54, fontSize: 20,fontWeight:FontWeight.w500),
             ),
             const SizedBox(height: 16), // Adjust vertical spacing
             SizeAndColorForProductDetails(
@@ -54,9 +54,15 @@ class _DescOfProductDetailsState extends State<DescOfProductDetails> {
               description: widget.product.product.description,
             ),
             const SizedBox(height: 16), // Adjust vertical spacing
-            Text(
-              "brand :${widget.product.product.brand}",
-              style: const TextStyle(fontSize: 22, color: Colors.black), // Example usage
+            Row(
+              children: [
+                Text(
+                  "brand : ",
+                  style: const TextStyle(fontSize: 24, color: Colors.black,fontWeight: FontWeight.w600),
+                  // Example usage
+                ),
+                Text("${widget.product.product.brand}",style: const TextStyle(fontSize: 20, color: Colors.black,fontWeight: FontWeight.w500))
+              ],
             ),
             const SizedBox(height: 20), // Adjust vertical spacing
             RowButtonsItem(product: widget.product,index: widget.index,),

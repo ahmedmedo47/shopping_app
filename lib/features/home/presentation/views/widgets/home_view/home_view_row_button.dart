@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:shopping_app/features/home/data/models/categories_model.dart';
 import 'package:shopping_app/features/home/data/models/products_model/products_model.dart';
@@ -23,7 +25,7 @@ class HomeViewRowButton extends StatelessWidget {
         children: [
           Text(
             category.title,
-            style: const TextStyle(fontSize: 20, color: Colors.black),
+            style: const TextStyle(fontSize: 22, color: Colors.black,fontWeight: FontWeight.bold),
           ),
           MaterialButton(
             onPressed: () {
@@ -37,12 +39,12 @@ class HomeViewRowButton extends StatelessWidget {
               children: [
                 Text(
                   "Shop Now",
-                  style: TextStyle(fontSize: 15, color: Colors.black26),
+                  style: TextStyle(fontSize: 18, color: Colors.black54),
                 ),
                 Icon(
                   Icons.arrow_forward_ios_rounded,
                   size: 15,
-                  color: Colors.black26,
+                  color: Colors.black54,
                 )
               ],
             ),

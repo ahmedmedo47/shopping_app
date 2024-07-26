@@ -53,7 +53,7 @@ class HomeViewContainerDetailsForList extends StatelessWidget {
                         product.description,
                         maxLines: 4,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(fontSize: 15, color: Colors.black26),
+                        style: const TextStyle(fontSize: 16, color: Color(0xFF6C6C6C)),
                       ),
                     )
                   ],

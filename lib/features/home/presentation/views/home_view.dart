@@ -30,7 +30,6 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffD6DAD8),
       body: Padding(
         padding: const EdgeInsets.only(top: 50),
         child: FutureBuilder<void>(

@@ -11,11 +11,11 @@ class ProductDetailsTile extends StatelessWidget {
     return ExpansionTile(
       title: Text(
         title,
-        style: const TextStyle(fontSize: 20),
+        style: const TextStyle(fontSize: 22,fontWeight: FontWeight.w600),
       ),
       children: <Widget>[
         ListTile(
-          title: Text(description),
+          title: Text(description,style: TextStyle(color: Color(0xFF6C6C6C),fontSize:16),),
         ),
       ],
     );
