@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shopping_app/features/home/data/models/products_model/products_model.dart';
 
 class FavoritesProvider extends ChangeNotifier {
-  List<ProductsModel> _favorites = [];
+  final List<ProductsModel> _favorites = [];
 
   List<ProductsModel> get favorites => _favorites;
 
