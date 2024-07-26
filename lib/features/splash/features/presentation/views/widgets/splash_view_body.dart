@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:shopping_app/features/splash/features/presentation/views/widgets/sliding_text.dart';
+
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -7,72 +9,49 @@ class SplashViewBody extends StatefulWidget {
   @override
   State<SplashViewBody> createState() => _SplashViewBodyState();
 }
-
-class _SplashViewBodyState extends State<SplashViewBody> with TickerProviderStateMixin {
-  late AnimationController imageAnimationController;
-  late AnimationController textAnimationController;
-  late Animation<Offset> imageSlidingAnimation;
-  late Animation<Offset> textSlidingAnimation;
-
+class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProviderStateMixin{
+  late AnimationController animationController;
+  late Animation <Offset> slidingAnimation;
   @override
   void initState() {
-    super.initState();
-    initSlidingAnimations();
+    initSlidingAnimation();
     navigateToHome();
+
   }
 
+  // single responsibility principle  مبدئ ان كل فانكشن او كلاس مسؤولين عن حاجه معينخ
   void navigateToHome() {
-    Future.delayed(const Duration(seconds: 9), () {
+    Future.delayed(const Duration(seconds:4),(){
+      // Get.to(()=> const HomeView(),transition: Transition.fadeIn,duration: kTransitionDuration);
       Navigator.of(context).pushReplacementNamed("navigationBar");
     });
   }
-
   @override
   void dispose() {
-    imageAnimationController.dispose();
-    textAnimationController.dispose();
+    // TODO: implement dispose
     super.dispose();
+    animationController.dispose();
   }
-
-  @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+     // mainAxisAlignment: MainAxisAlignment.center,
+     // crossAxisAlignment: CrossAxisAlignment.stretch,//بيسنتر العرض بتاع الايميج
       children: [
-        SlideTransition(
-          position: imageSlidingAnimation,
-          child: Image.asset("assets/images/shopping_photo.jpg"),
+        SizedBox(height: 130,),
+        Center(
+          child: Container(
+            width: 380, height: 400,
+            child:Lottie.asset("assets/images/Animation - shopping2.json",fit: BoxFit.fill) ,),
         ),
-        const SizedBox(height: 10),
-        SlideTransition(
-          position: textSlidingAnimation,
-          child: SlidingText(slidingAnimation: textSlidingAnimation),
-        ),
+        SlidingText(slidingAnimation: slidingAnimation)
       ],
     );
   }
-
-  void initSlidingAnimations() {
-    imageAnimationController = AnimationController(vsync: this, duration: const Duration(seconds: 5));
-    textAnimationController = AnimationController(vsync: this, duration: const Duration(seconds: 3));
-
-    imageSlidingAnimation = Tween<Offset>(begin: const Offset(2, 0), end: const Offset(0, 0)).animate(
-      CurvedAnimation(
-        parent: imageAnimationController,
-        curve: Curves.easeInOut,
-      ),
-    );
-
-    textSlidingAnimation = Tween<Offset>(begin: const Offset(0, 1), end: const Offset(0, 0)).animate(
-      CurvedAnimation(
-        parent: textAnimationController,
-        curve: Curves.easeInOut,
-      ),
-    );
-
-    imageAnimationController.forward().then((_) {
-      textAnimationController.forward();
-    });
+  void initSlidingAnimation() {
+    animationController = AnimationController(vsync:this,duration:const Duration(seconds: 3));
+    slidingAnimation = Tween<Offset>(begin:const Offset(0,9) , end:const Offset(0,3)).animate(animationController);
+    super.initState();
+    animationController.forward();
   }
 }
+
