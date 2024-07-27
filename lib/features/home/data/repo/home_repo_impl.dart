@@ -27,7 +27,7 @@ class HomeRepoImpl implements HomeRepo {
       }
       return right(categoriesList);
     } on Exception catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }
       return left(ServerFailure(errorMessage: e.toString()));
@@ -68,7 +68,7 @@ class HomeRepoImpl implements HomeRepo {
         return left(ServerFailure(errorMessage: 'No items found'));
       }
     } on Exception catch (e) {
-      if (e is DioError) {
+      if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }
       return left(ServerFailure(errorMessage: e.toString()));

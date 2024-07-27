@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
         "cartView": (context) => const CartView(),
         "navigationBar": (context) => const NavigationBarForApp(),
       },
-      home: SplashView(),
+      home: const SplashView(),
     );
   }
 }
